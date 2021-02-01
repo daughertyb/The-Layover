@@ -9,5 +9,8 @@ closingTime time NULL,
 venueType varchar,
 location varchar NOT NULL,
 rating int,
+address varchar,
+latitude decimal,
+longitude decimal,
 constraint pk_id primary key (id)
 );
