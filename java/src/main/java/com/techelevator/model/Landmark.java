@@ -7,19 +7,22 @@ public class Landmark {
 	private Long id;
 	private String name;
 	private String address;
+	private String location;
+	private double latitude;
+	private double longitude;
+	private String coordinates;
 	private String description;
 	private String venueType;
-	private String location;
 	private String images;
-	private long openingTime; 
-	private long closingTime; 
+	private String openingTime; 
+	private String closingTime; 
 	private String operatingDays;
 	private boolean rating;
 	
 	public Landmark() {}
 	
 	public Landmark(Long id, String name, String address, String description, String venueType, String location, String images,
-			long openingTime, long closingTime, String operatingDays, boolean rating) {
+			String openingTime, String closingTime, String operatingDays, boolean rating) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
@@ -54,6 +57,16 @@ public class Landmark {
 
 	public String getName() {
 		return name;
+	}
+	//need more logic within coordinates lat and long
+	//possibly need toString
+	public String getCoordinates() {
+		return coordinates;
+	}
+	
+	public void setCoordinates(double latitude, double longitude) {
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
 
@@ -112,22 +125,22 @@ public class Landmark {
 	}
 
 
-	public long getOpeningTime() {
+	public String getOpeningTime() {
 		return openingTime;
 	}
 
 
-	public void setOpeningTime(long openingTime) {
+	public void setOpeningTime(String openingTime) {
 		this.openingTime = openingTime;
 	}
 
 
-	public long getClosingTime() {
+	public String getClosingTime() {
 		return closingTime;
 	}
 
 
-	public void setClosingTime(long closingTime) {
+	public void setClosingTime(String closingTime) {
 		this.closingTime = closingTime;
 	}
 
