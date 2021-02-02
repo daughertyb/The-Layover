@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.dao.LandmarkDAO;
@@ -24,4 +26,11 @@ public class LandmarkController {
 		return listOfLandmarks;
 	}
 	
+	@RequestMapping(path="/search-landmarks", method=RequestMethod.GET)
+	public List<Landmark> searchLandmarks(@RequestParam String day, @RequestParam String location, @RequestParam String venueType) {
+		List<Landmark> landmarkByName = dao.searchLandmarks(day, location, venueType);
+		return landmarkByName;
+	} 
+	
 }
+

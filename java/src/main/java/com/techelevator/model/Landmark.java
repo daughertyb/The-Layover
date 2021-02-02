@@ -17,12 +17,13 @@ public class Landmark {
 	private String openingTime; 
 	private String closingTime; 
 	private String operatingDays;
-	private boolean rating;
+	private int thumbsUp;
+	private int thumbsDown;
 	
 	
 
 	public Landmark(long id, String name, String description, String img, String operatingDays, String openingTime,
-		String closingTime, String venueType, String location, String address, boolean rating,
+		String closingTime, String venueType, String location, String address, int thumbsUp, int thumbsDown,
 		double latitude, double longitude) {
 		this.id = id;
 		this.name = name;
@@ -34,19 +35,19 @@ public class Landmark {
 		this.operatingDays = operatingDays;
 		this.openingTime = openingTime;
 		this.closingTime = closingTime;
-		this.rating = rating;
+		this.thumbsUp = thumbsUp;
+		this.thumbsDown = thumbsDown;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		
 	}
-
-	public boolean isRating() {
-		return rating;
+	
+	public Landmark(String name, String openingTime, String closingTime) {
+		this.name = name;
+		this.openingTime = openingTime;
+		this.closingTime = closingTime;
 	}
 
-	public void setRating(boolean rating) {
-		this.rating = rating;
-	}
 
 	public Long getId() {
 		return id;
@@ -186,6 +187,44 @@ public class Landmark {
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
+
+
+
+	public int getThumbsUp() {
+		return thumbsUp;
+	}
+
+
+
+	public void setThumbsUp(int thumbsUp) {
+		this.thumbsUp = thumbsUp;
+	}
+
+
+
+	public int getThumbsDown() {
+		return thumbsDown;
+	}
+
+
+
+	public void setThumbsDown(int thumbsDown) {
+		this.thumbsDown = thumbsDown;
+	}
+
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+
+	public void setCoordinates(String coordinates) {
+		this.coordinates = coordinates;
+	}
+	
+	
 	
 	
 

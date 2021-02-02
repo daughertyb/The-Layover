@@ -20,6 +20,8 @@ public interface LandmarkDAO {
 	Landmark findLandmarkByDistance (String location);
 	
 	int findIdByLandmarkName (String name);
+
+	List<Landmark> searchLandmarks(String day, String location, String venueType);
 	
 	
 
