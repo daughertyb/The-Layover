@@ -12,6 +12,10 @@ export default {
 
   register(user) {
     return http.post('/register', user)
+  },
+
+  allLandmark(){
+    return http.get('/get-all/landmarks')
   }
 
 }
