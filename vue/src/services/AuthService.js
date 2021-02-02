@@ -14,8 +14,8 @@ export default {
     return http.post('/register', user)
   },
 
-  allLandmark(user){
-    return http.get('/get-all/landmarks', user)
+  allLandmark(){ //user
+    return http.get('/get-all/landmarks')  //, user
   }
 
 }
