@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Component;
+
 import com.techelevator.model.Landmark;
 
-
+@Component
+@PreAuthorize("isAuthenticated()")
 public class LandmarkSqlDAO implements LandmarkDAO {
 	
 	 private JdbcTemplate jdbcTemplate;
@@ -18,13 +22,30 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 
 	@Override
 	public List<Landmark> allLandmarks() {
+		String sql = "select * from landMark";
 		List<Landmark> landmarks = new ArrayList<Landmark>();
-		String sql = "select * from landmark";
 		
-	    SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		
         while(results.next()) {
-            Landmark landmark = mapRowToLandmark(results);
-            landmarks.add(landmark);
+        	
+
+            long id = results.getLong("id");
+            String name = results.getString("name");
+            String description = results.getString("description");
+            String img = results.getString("img");
+            String operatingDays = results.getString("operatingdays");
+            String openingTime = results.getString("openingtime");
+            String closingTime = results.getString("closingtime");
+            String venueType = results.getString("venuetype");
+            String location = results.getString("location");
+            boolean rating = results.getBoolean("rating");
+            String address = results.getString("address");
+            double latitude = results.getDouble("latitude");
+            double longitude = results.getDouble("longitude");
+            
+            Landmark afterLandmark = new Landmark(id, name, description, img, operatingDays, openingTime, closingTime, venueType, location, address, rating, latitude, longitude);
+            landmarks.add(afterLandmark);
         }
 
         return landmarks;
@@ -47,19 +68,19 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 	}
 	
 	//coordinates?
-	private Landmark mapRowToLandmark(SqlRowSet rs) {
-		Landmark landmark = new Landmark();
-        landmark.setName(rs.getString("name"));
-        landmark.setAddress(rs.getString("address"));
-        landmark.setVenueType(rs.getString("venuetype"));
-        landmark.setLocation(rs.getString("location"));
-        landmark.setOperatingDays(rs.getString("operatingdays"));
-        landmark.setOpeningTime(rs.getString("openingtime"));
-        landmark.setClosingTime(rs.getString("closingtime"));
-        landmark.setDescription(rs.getString("description"));
-        landmark.setRating(rs.getBoolean("rating"));
-        return landmark;
-    }
+//	private Landmark mapRowToLandmark(SqlRowSet rs) {
+//		Landmark landmark = new Landmark();
+//        landmark.setName(rs.getString("name"));
+//        landmark.setAddress(rs.getString("address"));
+//        landmark.setVenueType(rs.getString("venuetype"));
+//        landmark.setLocation(rs.getString("location"));
+//        landmark.setOperatingDays(rs.getString("operatingdays"));
+//        landmark.setOpeningTime(rs.getString("openingtime"));
+//        landmark.setClosingTime(rs.getString("closingtime"));
+//        landmark.setDescription(rs.getString("description"));
+//        landmark.setRating(rs.getBoolean("rating"));
+//        return landmark;
+//    }
 
 
 	@Override

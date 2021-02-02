@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Landmark {
 	
-	private Long id;
+	private long id;
 	private String name;
 	private String address;
 	private String location;
@@ -19,23 +19,26 @@ public class Landmark {
 	private String operatingDays;
 	private boolean rating;
 	
-	public Landmark() {}
 	
-	public Landmark(Long id, String name, String address, String description, String venueType, String location, String images,
-			String openingTime, String closingTime, String operatingDays, boolean rating) {
+
+	public Landmark(long id, String name, String description, String img, String operatingDays, String openingTime,
+		String closingTime, String venueType, String location, String address, boolean rating,
+		double latitude, double longitude) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.description = description;
 		this.venueType = venueType;
 		this.location = location;
-		this.images = images;
+		this.images = img;
+		this.operatingDays = operatingDays;
 		this.openingTime = openingTime;
 		this.closingTime = closingTime;
-		this.operatingDays = operatingDays;
+		this.rating = rating;
+		this.latitude = latitude;
+		this.longitude = longitude;
 		
 	}
-
 
 	public boolean isRating() {
 		return rating;
@@ -64,10 +67,10 @@ public class Landmark {
 		return coordinates;
 	}
 	
-	public void setCoordinates(double latitude, double longitude) {
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
+//	public void setCoordinates(double latitude, double longitude) {
+//		this.setLatitude(latitude);
+//		this.setLongitude(longitude);
+//	}
 
 
 	public void setName(String name) {
@@ -153,20 +156,36 @@ public class Landmark {
 		this.operatingDays = operatingDays;
 	}
 
-	@Override
-	   public String toString() {
-	      return "Landmark{" +
-	              ", Name:'" + name + '\'' +
-	              ", Address:'" + address + 
-	              ", Description:" + description +
-	              ", Venue Type:" + venueType +
-	              ", Location:" + location +
-	              ", Days Open:" + operatingDays +
-	              ", Hours:" + openingTime + "-" + closingTime +
-	              ", Landmark Description:" + description +
-	              ", Landmark Venue Type:" + venueType +
-	              '}';
-	   }
+//	@Override
+//	   public String toString() {
+//	      return "Landmark{" +
+//	              ", Name:'" + name + '\'' +
+//	              ", Address:'" + address + 
+//	              ", Description:" + description +
+//	              ", Venue Type:" + venueType +
+//	              ", Location:" + location +
+//	              ", Days Open:" + operatingDays +
+//	              ", Hours:" + openingTime + "-" + closingTime +
+//	              ", Landmark Description:" + description +
+//	              ", Landmark Venue Type:" + venueType +
+//	              '}';
+//	   }
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
 	
 	
 
