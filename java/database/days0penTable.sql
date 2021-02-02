@@ -14,10 +14,9 @@ Foreign key (landmarkid) references landmark(id)
 
 insert into daysopen (landmarkid
 ,monday, tuesday, wednesday, thursday, friday,saturday, sunday)
-values ((select id from landmark where name='Motown Museum'),
-'open','open','open','open','open','close','close');   
+values ((select id from landmark where name='Motown Museum'),'open','open','open','open','open','close','close'); 
 
 insert into daysopen (landmarkid
 ,monday, tuesday, wednesday, thursday, friday,saturday, sunday)
-values ((select id from landmark where name='Detroit Institute of Arts'),
-'close','close','close','open','open','open','open');
+values ((select id from landmark where name='Detroit Institute of Arts'),'close','close','close','open','open','open','openose'); 
+
