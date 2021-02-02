@@ -1,11 +1,17 @@
 <template>
     <div>
+        
         {{landmark}}
+        
+        
+        
       
 
 
 
     </div>
+
+
   
 </template>
 
