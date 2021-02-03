@@ -19,27 +19,31 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	
 	@Override
 	public List<String> allCities() {
 		String sql = "select location from landmark";
+		List<String> citiesRaw = new ArrayList<String>();
 		List<String> cities = new ArrayList<String>();
 
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 
 		while (results.next()) {
-			
+
 			String city = results.getString("location");
-		
-			cities.add(city);
+
+			citiesRaw.add(city);
+		}
+
+		for (String c : citiesRaw) {
+
+			if (!cities.contains(c)) {
+				cities.add(c);
+			}
 		}
 
 		return cities;
 	}
-	
-	
-	
-	
+
 	@Override
 	public List<Landmark> allLandmarks() {
 		String sql = "select * from landmark";
@@ -72,12 +76,6 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 		return landmarks;
 	}
 
-	
-	
-	
-	
-	
-	
 	@Override
 	public List<Landmark> searchLandmarks(String day, String location, String venueType) {
 
