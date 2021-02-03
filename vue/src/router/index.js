@@ -33,6 +33,7 @@ const router = new Router({
       
       
     },
+    /*
     {
       path: '/get-all/landmarks',
       name: 'allLandmark',
@@ -42,7 +43,7 @@ const router = new Router({
       }
 
     },
-
+*/
     {
       path: "/login",
       name: "login",

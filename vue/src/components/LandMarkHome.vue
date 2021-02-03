@@ -22,7 +22,11 @@ export default {
   },
 
   created() {
-    Landmark.allLandmark()
+
+    window.alert(this.$store.state.token);
+    window.alert(this.$store.state.user);
+
+    Landmark.allLandmark(this.$store.state.user)
       .then((response) => {
         this.landmark = response.data;
         console.log(this.landmark);
