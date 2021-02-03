@@ -1,52 +1,69 @@
 <template>
   <div>
-     <table>
-      <select v-model="cityValue" v-on:change="location">
-        <option v-for="city in cities" v-bind:key="city">
-          {{ cities }} 
-          {{ landmark }}
+    <div class="dropDown">
+      <header id="go-back-btn">
+        <router-link to="/home">Go Back</router-link>
+      </header>
+
+      <select id="allCities" v-model="cityValue" v-on:change="cityName">
+        <option v-for="city in cities" v-bind:key="city.name">
+          {{ city }}
         </option>
       </select>
-    </table> 
-    <h1>HI</h1>
-        {{ cities }} 
-     {{ landmark }} 
+
+      <table>
+        <tr id="cityPicked">
+          {{
+            cityChoice
+          }}
+
+          <tr v-for="option in cityResults" v-bind:key="option.id">
+              <h2 class="results">{{ option.name }}</h2>
+            
+             <!--We will need this later if we want to bring photos over from assets <img v-bind:src="require(`../assets/${option.img}`)"/> -->
+    
+            </tr>
+       
+      </table>
+
+      <!-- {{ cities }} 
+     {{ landmark }}  -->
+    </div>
   </div>
 </template>
 
 <script>
-import Landmark from "@/services/APIServices.js";
+import City from "@/services/APIServices.js";
 export default {
   data() {
     return {
-      landmark: [],
-      value: "",
-
+      city: [],
       cities: [],
       cityValue: "",
-    
+      cityChoice: [],
+      cityResults: [],
     };
   },
 
   created() {
-
     // window.alert(this.$store.state.token);
     // window.alert(this.$store.state.user);
 
-    Landmark.allLandmark()
-      .then((response) => {
-        this.landmark = response.data;
-        console.log(this.landmark);
-      })
-      .catch((error) => {
-        if (error.response) {
-          ("Ope, Not Available Option :O");
-        }
-      });
+    // Landmark.allLandmark()
+    //   .then((response) => {
+    //     this.landmark = response.data;
+    //     console.log(this.landmark);
+    //   })
+    //   .catch((error) => {
+    //     if (error.response) {
+    //       ("Ope, Not Available Option :O");
+    //     }
+    //   });
 
-      Landmark.allCities()
+    City.allCities()
       .then((response) => {
         this.cities = response.data;
+            // this.cityChoice = response.data.name;
         console.log(this.cities);
       })
       .catch((error) => {
@@ -57,14 +74,32 @@ export default {
   },
 
   methods: {
-    name() {
+    cityName() {
+      City;
+      cityResults;
       this.filler();
-      Landmark;
+      City.cityResults(this.cityValue)
+    
+        .then((response) => {
+          this.cityChoice = response.data;
+          // this.cityResults = response.data;
+        })
+        .catch((error) => {
+          if (error.response) {
+            alert("Not Available Option");
+          }
+        });
     },
+
+    cityLandmarks(cityName){
+    City;  
+      this.cityValue = response.data;
+    },
+
     filler() {
-      for (let i = 0; i < this.landmark.length; i++) {
-        if (this.landmark[i].img == null) {
-          this.landmark[i].img = "favicon.ico";
+      for (let i = 0; i < this.city.length; i++) {
+        if (this.city[i].img == null) {
+          this.city[i].img = "favicon.ico";
         }
       }
     },
@@ -74,4 +109,7 @@ export default {
 
 
 <style>
+
+#allCities {
+}
 </style>

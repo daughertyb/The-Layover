@@ -149,7 +149,7 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 //        return landmark;
 //    }
 
-	@Override
+	
 	public Landmark findLandmarkByOperatingDays(String operatingDays) throws RuntimeException {
 		for (Landmark landmark : this.allLandmarks()) {
 			if (landmark.getOperatingDays().toLowerCase().equals(operatingDays.toLowerCase())) {
