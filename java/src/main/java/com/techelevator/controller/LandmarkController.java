@@ -40,5 +40,11 @@ public class LandmarkController {
 		return landmarkByName;
 	} 
 	
+	@RequestMapping(path="/landmarks-city/{location}", method=RequestMethod.GET)
+	public List<Landmark> getLandmarkByCity(@PathVariable String location) {
+		List<Landmark> landmarkByCity = dao.getLandmarkByCity(location);
+		return landmarkByCity;
+	} 
+	
 }
 

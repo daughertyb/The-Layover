@@ -10,20 +10,15 @@ public interface LandmarkDAO {
 		
 	Landmark findLandmarkByName (String name);
 	
-	Landmark findLandmarkByOperatingDays (String operatingDays);
-	
-	Landmark findLandmarkByOperatingHours (String openingTime, String closingTime);
-	
 	Landmark findLandmarkByVenueType (String venueType);
-	
-	// should possibly take in coordinates as well
-	Landmark findLandmarkByDistance (String location);
 	
 	int findIdByLandmarkName (String name);
 
 	List<Landmark> searchLandmarks(String day, String location, String venueType);
 
 	List<String> allCities();
+
+	List<Landmark> getLandmarkByCity(String location);
 	
 	
 

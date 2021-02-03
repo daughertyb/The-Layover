@@ -75,6 +75,26 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 
 		return landmarks;
 	}
+	
+	@Override
+	public List<Landmark> getLandmarkByCity(String location) {
+		
+		String sql = "SELECT name, description, img FROM landmark WHERE location=?";
+		List<Landmark> landmarks = new ArrayList<Landmark>();
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location);
+		
+		while (results.next()) {
+			String name = results.getString("name");
+			String description = results.getString("description");
+			String img = results.getString("img");
+			
+			Landmark afterLandmark = new Landmark(name, description, img);
+			landmarks.add(afterLandmark);
+		}
+		
+		return landmarks;
+	}
 
 	@Override
 	public List<Landmark> searchLandmarks(String day, String location, String venueType) {
@@ -90,8 +110,9 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 			String name = results.getString("name");
 			String openingTime = results.getString("openingtime");
 			String closingTime = results.getString("closingtime");
+			String operatingDays = results.getString("operatingdays");
 
-			Landmark afterLandmark = new Landmark(name, openingTime, closingTime);
+			Landmark afterLandmark = new Landmark(name, openingTime, closingTime, operatingDays);
 			landmarks.add(afterLandmark);
 		}
 
@@ -138,11 +159,6 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 		throw new RuntimeException("Sorry, no landmarks are available to visit during" + operatingDays + ".");
 	}
 
-	@Override
-	public Landmark findLandmarkByOperatingHours(String openingTime, String closingTime) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Landmark findLandmarkByVenueType(String venueType) {
@@ -150,10 +166,6 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 		return null;
 	}
 
-	@Override
-	public Landmark findLandmarkByDistance(String location) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

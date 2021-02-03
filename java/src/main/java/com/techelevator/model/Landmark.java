@@ -42,10 +42,17 @@ public class Landmark {
 		
 	}
 	
-	public Landmark(String name, String openingTime, String closingTime) {
+	public Landmark(String name, String openingTime, String closingTime, String operatingDays) {
 		this.name = name;
 		this.openingTime = openingTime;
 		this.closingTime = closingTime;
+		this.operatingDays = operatingDays;
+	}
+	
+	public Landmark(String name, String description, String images) {
+		this.name = name;
+		this.description = description;
+		this.images = images;
 	}
 
 
