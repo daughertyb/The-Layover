@@ -14,8 +14,12 @@ export default {
     return http.post('/register', user)
   },
 
+  // allLandmark(){ 
+  //   return http.get('/get-all/landmarks', {headers: {'Authorization' : this.$store.state.token}});   
+  // },
+
   allLandmark(){ 
-    return http.get('/get-all/landmarks', {headers: {'Authorization' : this.$store.state.token}});   
+    return http.get('/get-all-landmarks');   
   },
 
   searchLandmark(user, day, location, venueType){
