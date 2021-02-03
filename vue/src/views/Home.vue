@@ -4,9 +4,8 @@
 
     <h1>Home</h1>
     <p>You must be authenticated to see this</p>
-    <input type="text">
 
-    <Landmark-Home/>
+    TODO: Put a router-link to the Landmarks route.
 
 
   </div>
@@ -14,11 +13,10 @@
 </template>
 
 <script>
-import LandmarkHome from '../components/LandMarkHome'
+
 
 export default {
   components: {
-    LandmarkHome
   },
   name: "home",
   

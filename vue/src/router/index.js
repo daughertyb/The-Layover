@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+import Landmarks from '../components/LandMarkHome.vue'
 
 
 
@@ -29,21 +30,17 @@ const router = new Router({
       component: Home,
       meta: {
         requiresAuth: true
-      }
-      
-      
+      }    
     },
-    /*
     {
-      path: '/get-all/landmarks',
-      name: 'allLandmark',
-      component: Home,
+      path: '/cities',
+      name: 'allCities',
+      component: Landmarks,
       meta: {
         requiresAuth: true
       }
 
     },
-*/
     {
       path: "/login",
       name: "login",

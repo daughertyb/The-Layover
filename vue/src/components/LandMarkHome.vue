@@ -1,35 +1,53 @@
 <template>
   <div>
-    <table>
-      <select v-model="value" v-on:change="name">
-        <option v-for="option in landmark" v-bind:key="option.id">
+     <table>
+      <select v-model="cityValue" v-on:change="location">
+        <option v-for="city in cities" v-bind:key="city">
+          {{ cities }} 
           {{ landmark }}
         </option>
       </select>
-    </table>
-     <!-- {{ landmark }} -->
+    </table> 
+    <h1>HI</h1>
+        {{ cities }} 
+     {{ landmark }} 
   </div>
 </template>
 
 <script>
-import Landmark from "@/services/AuthService.js";
+import Landmark from "@/services/APIServices.js";
 export default {
   data() {
     return {
       landmark: [],
       value: "",
+
+      cities: [],
+      cityValue: "",
+    
     };
   },
 
   created() {
 
-    window.alert(this.$store.state.token);
-    window.alert(this.$store.state.user);
+    // window.alert(this.$store.state.token);
+    // window.alert(this.$store.state.user);
 
-    Landmark.allLandmark(this.$store.state.user)
+    Landmark.allLandmark()
       .then((response) => {
         this.landmark = response.data;
         console.log(this.landmark);
+      })
+      .catch((error) => {
+        if (error.response) {
+          ("Ope, Not Available Option :O");
+        }
+      });
+
+      Landmark.allCities()
+      .then((response) => {
+        this.cities = response.data;
+        console.log(this.cities);
       })
       .catch((error) => {
         if (error.response) {
