@@ -22,6 +22,8 @@ public interface LandmarkDAO {
 	int findIdByLandmarkName (String name);
 
 	List<Landmark> searchLandmarks(String day, String location, String venueType);
+
+	List<String> allCities();
 	
 	
 

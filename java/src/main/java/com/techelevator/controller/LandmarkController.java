@@ -22,7 +22,13 @@ public class LandmarkController {
 	@Autowired
 	LandmarkDAO dao;
 	
-	@RequestMapping(path="/get-all/landmarks", method= RequestMethod.GET)
+	@RequestMapping(path="/cities", method= RequestMethod.GET)
+	public List<String> allcities(){
+		List<String> listOfCities = dao.allCities();
+		return listOfCities;
+	}
+	
+	@RequestMapping(path="/get-all-landmarks", method= RequestMethod.GET)
 	public List<Landmark> allLandmarks(){
 		List<Landmark> listOfLandmarks = dao.allLandmarks();
 		return listOfLandmarks;
