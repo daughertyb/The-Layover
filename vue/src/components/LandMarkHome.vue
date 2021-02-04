@@ -24,10 +24,12 @@
              <!-- <img v-bind:src="require(`../assets/${option.img}`)"/> -->
             <h2>  {{option.name}} </h2>
               
+              <div id="landmark-description">
               <br>
-               {{option.description}}
+               {{option.description}}> 
+              </div>
                <br>
-                <img :src="option.images">
+                <img id="landmark-imgs" :src="option.images">
                 <br>
                 {{option.venueType}}
                 <br>
@@ -37,10 +39,10 @@
                 <br> 
                 {{option.closingTime}}
             </div>
-
             </tr>
+ </table>
        
-      </table>
+     
     </div>
   </div>
 </template>
@@ -115,4 +117,23 @@ export default {
    padding: 50px
 
 }
+
+#landmark-imgs {
+display: flex;
+justify-content: center;
+height: 400px;
+width: auto;
+margin: auto 0;
+
+}
+
+
+#landmark-description {
+display: flex;
+border: solid 2px;
+padding-left: 20px;
+
+
+}
+
 </style>
