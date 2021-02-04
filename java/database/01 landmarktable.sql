@@ -23,7 +23,7 @@ venuetype, location, address, latitude, longitude, thumbsup, thumbsdown )
 values ('Motown Museum', 
 'the nickname given to Motowns first headquarters. 
 A former photographers studio located at 2648 West Grand Boulevard in Detroit', 
-null, 
+'motownmuseum.jpg', 
 'Monday -Friday', 
 '10:00:00', 
 '18:00:00',
@@ -38,7 +38,7 @@ values
 ('Detroit Institute of Arts', 
 'The Detroit Institute of Arts, located in Midtown Detroit, Michigan, 
 has one of the largest and most significant art collections in the United States.', 
-null, 
+'detroitinstitute.jpg', 
 'Wednesday -Sunday', 
 '09:00:00', 
 '18:00:00',
@@ -55,7 +55,7 @@ values
 'Columbus Zoo and Aquarium is home to animals representing various species from around the globe. 
 It is a recreational and education destination that includes Zoombezi Bay water 
 park and a 18-hole safari golf club.', 
-null, 
+'columbuszoo.jpg', 
 'Monday -Sunday', 
 '10:00:00', 
 '16:00:00',
@@ -76,7 +76,7 @@ It is open daily and an admission fee is charged. Today, it is a
  horticultural and educational institution showcasing exotic plant 
 collections, special exhibitions, and Dale Chihuly artworks. 
 The conservatory contains more than 400 plant species.', 
-null, 
+'franklinpark.jpg', 
 'Monday -Sunday', 
 '10:00:00', 
 '19:00:00',
@@ -95,7 +95,7 @@ Bell or Old State House Bell, is an iconic symbol of American independence,
 located in Philadelphia, Pennsylvania. Once placed in the steeple of the 
 Pennsylvania State House, the bell today is located across the street in 
 the Liberty Bell Center in Independence National Historical Park. ', 
-null, 
+'libertybell.jpg', 
 'Monday -Sunday', 
 '09:00:00', 
 '19:00:00',
@@ -115,7 +115,7 @@ that primarily focuses on promoting public understanding of science.
 The institute operates a science museum, which displays exhibits on 
 subjects such as science and industry, physics, astronomy, and 
 history and The Tuttleman IMAX Theater.', 
-null, 
+'franklininstitute.jpg', 
 'Monday -Sunday', 
 '10:00:00', 
 '19:00:00',
