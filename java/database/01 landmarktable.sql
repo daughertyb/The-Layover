@@ -23,7 +23,7 @@ venuetype, location, address, latitude, longitude, thumbsup, thumbsdown )
 values ('Motown Museum', 
 'the nickname given to Motowns first headquarters. 
 A former photographers studio located at 2648 West Grand Boulevard in Detroit', 
-'motownmuseum.jpg', 
+'https://img.particlenews.com/img/id/3eK4uc_0PT1sRm600?type=thumbnail_512x288', 
 'Monday -Friday', 
 '10:00:00', 
 '18:00:00',
@@ -38,7 +38,7 @@ values
 ('Detroit Institute of Arts', 
 'The Detroit Institute of Arts, located in Midtown Detroit, Michigan, 
 has one of the largest and most significant art collections in the United States.', 
-'detroitinstitute.jpg', 
+'https://www.dia.org/sites/default/files/styles/featured_image/public/Museum-General-2.jpg?itok=_OnqeYvR', 
 'Wednesday -Sunday', 
 '09:00:00', 
 '18:00:00',
@@ -55,7 +55,7 @@ values
 'Columbus Zoo and Aquarium is home to animals representing various species from around the globe. 
 It is a recreational and education destination that includes Zoombezi Bay water 
 park and a 18-hole safari golf club.', 
-'columbuszoo.jpg', 
+'http://awesomeocean.com/wp-content/uploads/2016/11/Manatees-8754-Grahm-S.-Jones-Columbus-Zoo-and-Aquarium.jpg', 
 'Monday -Sunday', 
 '10:00:00', 
 '16:00:00',
@@ -76,7 +76,7 @@ It is open daily and an admission fee is charged. Today, it is a
  horticultural and educational institution showcasing exotic plant 
 collections, special exhibitions, and Dale Chihuly artworks. 
 The conservatory contains more than 400 plant species.', 
-'franklinpark.jpg', 
+'https://media-cdn.tripadvisor.com/media/photo-s/15/a0/61/58/franklin-park-conservatory.jpg', 
 'Monday -Sunday', 
 '10:00:00', 
 '19:00:00',
@@ -95,7 +95,7 @@ Bell or Old State House Bell, is an iconic symbol of American independence,
 located in Philadelphia, Pennsylvania. Once placed in the steeple of the 
 Pennsylvania State House, the bell today is located across the street in 
 the Liberty Bell Center in Independence National Historical Park. ', 
-'libertybell.jpg', 
+'https://media-cdn.tripadvisor.com/media/photo-m/1280/17/7b/c2/7d/photo0jpg.jpg', 
 'Monday -Sunday', 
 '09:00:00', 
 '19:00:00',
@@ -115,7 +115,7 @@ that primarily focuses on promoting public understanding of science.
 The institute operates a science museum, which displays exhibits on 
 subjects such as science and industry, physics, astronomy, and 
 history and The Tuttleman IMAX Theater.', 
-'franklininstitute.jpg', 
+'https://phillyfunguide.com/uploads/files/397948433257397375-the-franklin-institute-brain-cropped.0.91.665.509.full.jpg', 
 'Monday -Sunday', 
 '10:00:00', 
 '19:00:00',
