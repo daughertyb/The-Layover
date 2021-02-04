@@ -15,6 +15,14 @@
         </option>
       </select>
       </section>
+
+         <section id="allVenueTypes">
+      <select>
+        <option v-for="venueType in venueType" v-bind:key="venueType.id">
+         {{venueType}} 
+        </option>
+      </select>
+      </section>
       <table>
         <tr>
     
@@ -63,6 +71,7 @@ export default {
       cityValue: "",
       cityChoice: [],
       cityResults: [],
+      venueType: [],
 
     landmarkByCity : {
     images: '',
@@ -106,6 +115,7 @@ export default {
     cityAPI.getLandmarkByCity(this.cityValue).then (
       (response) => {
         this.cityResults = response.data;
+        this.venueType.add(cityResults.venueType);
       }
     )
     }
