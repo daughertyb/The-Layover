@@ -1,74 +1,63 @@
 <template>
-  
+  <div></div>
 </template>
 
 <script>
-import City from "@/services/APIServices.js";
-export default {
-     data() {
-    return {
-      city: []
+// import City from "@/services/APIServices.js";
+// export default {
+//      data() {
+//     return {
+//       city: []
       
-    };
-  },
-  created() {
-    // window.alert(this.$store.state.token);
-    // window.alert(this.$store.state.user);
+//     };
+//   },
+  // created() {
 
-    // Landmark.allLandmark()
-    //   .then((response) => {
-    //     this.landmark = response.data;
-    //     console.log(this.landmark);
-    //   })
-    //   .catch((error) => {
-    //     if (error.response) {
-    //       ("Ope, Not Available Option :O");
-    //     }
-    //   });
-
-    City.allCities()
-      .then((response) => {
-        this.cities = response.data;
-            // this.cityChoice = response.data.name;
-        console.log(this.cities);
-      })
-      .catch((error) => {
-        if (error.response) {
-          ("Ope, Not Available Option :O");
-        }
-      });
-  },methods: {
-    cityName() {
-      City;
-      cityResults;
-      this.filler();
-      City.cityResults(this.cityValue)
+  //   City;
+  //   City.allCities()
+  //     .then((response) => {
+  //       this.cities = response.data;
+  //           // this.cityChoice = response.data.name;
+  //       console.log(this.cities);
+  //     })
+  //     .catch((error) => {
+  //       if (error.response) {
+  //         ("Ope, Not Available Option :O");
+  //       }
+  //     });
+  // },
+//   methods: {
+//     cityName() {
+//       City;
+//       cityResults;
+//       this.filler();
+//       City.cityResults(this.cityValue)
     
-        .then((response) => {
-          this.cityChoice = response.data;
-          // this.cityResults = response.data;
-        })
-        .catch((error) => {
-          if (error.response) {
-            alert("Not Available Option");
-          }
-        });
-    },
+//         .then((response) => {
+//           this.cityChoice = response.data;
+//           // this.cityResults = response.data;
+//         })
+//         .catch((error) => {
+//           if (error.response) {
+//             alert("Not Available Option");
+//           }
+//         });
+//     },
 
-    cityLandmarks(cityName){
-    City;  
-      this.cityValue = response.data;
-    },
+//     cityLandmarks(cityName){
+//     City;  
+//       this.cityValue = response.data;
+//     },
 
-    filler() {
-      for (let i = 0; i < this.city.length; i++) {
-        if (this.city[i].img == null) {
-          this.city[i].img = "favicon.ico";
-        }
-      }
-    },
-  },
-};
+//     filler() {
+//       for (let i = 0; i < this.city.length; i++) {
+//         if (this.city[i].img == null) {
+//           this.city[i].img = "favicon.ico";
+//         }
+//       }
+//     },
+//   },
+// };
 </script>
 
 <style>
