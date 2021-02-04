@@ -2,8 +2,8 @@
   <div>
     <div class="dropDown">
       <header id="go-back-btn">
-        <router-link to="/home">Go Back</router-link> |
-        <router-link v-bind:to="{ name: 'cityLandmark' }">City Landmark</router-link>;
+        <router-link to="/home">Go Back</router-link> 
+        <!-- <router-link v-bind:to="{ name: 'cityLandmark' }">City Landmark</router-link> -->
       </header>
 
       <select id="allCities" v-on:change="captureCityName($event)">
@@ -17,16 +17,26 @@
           {{
             
           }}
-
-          <tr v-for="option in cityResults" v-bind:key="option.id">
-              <h2 class="results">{{ option.cityValue }}</h2>
-            
-             <!--We will need this later if we want to bring photos over from assets <img v-bind:src="require(`../assets/${option.img}`)"/> -->
-              {{option.name}}
+          
+          <tr v-for="option in cityResults" v-bind:key="option.name"> 
+            <div class="results">
+              <h2>{{ option.cityValue }}</h2>
+             <!-- <img v-bind:src="require(`../assets/${option.img}`)"/> -->
+            <h2>  {{option.name}} </h2>
+              
               <br>
                {{option.description}}
                <br>
-                {{option.img}}
+                <img :src="option.images">
+                <br>
+                {{option.venueType}}
+                <br>
+                {{option.operatingDays}}
+                <br> 
+                {{option.openingTime}}
+                <br> 
+                {{option.closingTime}}
+            </div>
 
             </tr>
        
@@ -47,9 +57,13 @@ export default {
       cityResults: [],
 
     landmarkByCity : {
-    img: '',
+    images: '',
     name: '',
-    description: ''
+    description: '',
+    venueType: '',
+    operatingDays: '',
+    openingTime: '',
+    closingTime: ''
     }
   };
   },
@@ -96,6 +110,9 @@ export default {
 
 <style>
 
-#allCities {
+ .results {
+   border: solid 2px;
+   padding: 50px
+
 }
 </style>

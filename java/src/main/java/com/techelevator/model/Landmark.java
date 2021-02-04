@@ -49,10 +49,14 @@ public class Landmark {
 		this.operatingDays = operatingDays;
 	}
 	
-	public Landmark(String name, String description, String images) {
+	public Landmark(String name, String description, String images, String operatingDays, String openingTime, String closingTime, String venueType) {
 		this.name = name;
 		this.description = description;
 		this.images = images;
+		this.operatingDays = operatingDays;
+		this.openingTime = openingTime;
+		this.closingTime = closingTime;
+		this.venueType = venueType;
 	}
 
 
