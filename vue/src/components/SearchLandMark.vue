@@ -13,7 +13,7 @@ export default  {
   },
 
   created() {
-    Landmark.searchLandmark(user, day, location, venueType)
+    Landmark.searchLandmark(day, location, venueType)
   },
 
  
