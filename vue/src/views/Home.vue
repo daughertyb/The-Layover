@@ -5,7 +5,6 @@
     <h1>Home</h1>
     <p>You must be authenticated to see this</p>
 
-    TODO: Put a router-link to the Landmarks route.
 
 
   </div>
