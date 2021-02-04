@@ -17,25 +17,25 @@
           {{
             
           }}
-<<<<<<< HEAD
           
           <tr v-for="option in cityResults" v-bind:key="option.name"> 
             <div class="results">
               <h2>{{ option.cityValue }}</h2>
              <!-- <img v-bind:src="require(`../assets/${option.img}`)"/> -->
             <h2>  {{option.name}} </h2>
-=======
-
-          <tr v-for="option in cityResults" v-bind:key="option.name">
-              <h2 class="results">{{ option.cityValue }}</h2>
-            
-             <!--We will need this later if we want to bring photos over from assets <img v-bind:src="require(`../assets/${option.img}`)"/> -->
-              {{option.name}}
->>>>>>> e336ed0e97d6664d4dbb09c7e59a0022f891fa7e
+              
               <br>
                {{option.description}}
                <br>
-                {{option.img}} 
+                <img :src="option.images">
+                <br>
+                {{option.venueType}}
+                <br>
+                {{option.operatingDays}}
+                <br> 
+                {{option.openingTime}}
+                <br> 
+                {{option.closingTime}}
             </div>
 
             </tr>
@@ -57,9 +57,13 @@ export default {
       cityResults: [],
 
     landmarkByCity : {
-    img: '',
+    images: '',
     name: '',
-    description: ''
+    description: '',
+    venueType: '',
+    operatingDays: '',
+    openingTime: '',
+    closingTime: ''
     }
   };
   },
