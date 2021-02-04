@@ -18,7 +18,7 @@
             
           }}
 
-          <tr v-for="option in cityResults" v-bind:key="option.id">
+          <tr v-for="option in cityResults" v-bind:key="option.name">
               <h2 class="results">{{ option.cityValue }}</h2>
             
              <!--We will need this later if we want to bring photos over from assets <img v-bind:src="require(`../assets/${option.img}`)"/> -->
