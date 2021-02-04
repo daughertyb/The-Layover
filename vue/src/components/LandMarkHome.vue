@@ -1,27 +1,27 @@
 <template>
   <div>
-    <div class="dropDown">
+    <div class="mainPage">
       <header id="go-back-btn">
         <router-link to="/home">Go Back</router-link> 
+        
         <!-- <router-link v-bind:to="{ name: 'cityLandmark' }">City Landmark</router-link> -->
       </header>
 
-      <select id="allCities" v-on:change="captureCityName($event)">
+      <section id="allCities">
+        <!-- placeholder='Select a City' -->
+      <select v-on:change="captureCityName($event)">
         <option v-for="city in cities" v-bind:key="city.id">
          {{city}} 
         </option>
       </select>
-
+      </section>
       <table>
-        <tr id="cityPicked">
-          {{
-            
-          }}
-          
+        <tr>
+    
           <tr v-for="option in cityResults" v-bind:key="option.name"> 
             <div class="results">
               <h2>{{ option.cityValue }}</h2>
-             <!-- <img v-bind:src="require(`../assets/${option.img}`)"/> -->
+        
             <h2>  {{option.name}} </h2>
               
               <div id="landmark-description">
@@ -31,13 +31,19 @@
                <br>
                 <img id="landmark-imgs" :src="option.images">
                 <br>
+                <div id="venueType">
                 {{option.venueType}}
+                </div>
                 <br>
+                <div id="operatingDays">
                 {{option.operatingDays}}
+                </div>
                 <br> 
+                <div id="openingTime-closingTime">
                 {{option.openingTime}}
-                <br> 
+                <br>
                 {{option.closingTime}}
+                </div>
             </div>
             </tr>
  </table>
@@ -113,27 +119,84 @@ export default {
 <style>
 
  .results {
-   border: solid 2px;
+   display: grid;
+   border: solid 3px;
    padding: 50px
 
 }
 
 #landmark-imgs {
-display: flex;
-justify-content: center;
-height: 400px;
-width: auto;
-margin: auto 0;
-
+ 
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 450px;  
+  width: auto;
+  margin: auto 0;
+  grid-row: 6;
 }
 
 
 #landmark-description {
-display: flex;
+font-size: 30px;
 border: solid 2px;
 padding-left: 20px;
-
-
 }
+
+ #mainPage {
+  
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
+
+div > header  {
+  display: flex;
+ justify-content: space-around;
+}
+
+#allCities {
+  display: flex;
+  justify-content: center;
+}
+
+#venueType {
+ display: flex;
+ justify-content: center;
+ font-size: 30px;
+}
+
+#operatingDays {
+   display: flex;
+ justify-content: center;
+  font-size: 30px;
+}
+
+#openingTime-closingTime{
+   display: flex;
+ justify-content: center;
+  font-size: 30px;
+}
+
+html {
+  background-color: rgba(89, 106, 116, 0.411);
+}
+
+.results {
+  background-color: rgba(69, 107, 138, 0.424);
+}
+
+#go-back-btn {
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+
+select {
+font-size: 20px;
+background-color: rgba(123, 112, 230, 0.479);
+}
+
 
 </style>
