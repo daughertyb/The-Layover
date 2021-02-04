@@ -10,6 +10,7 @@
       <section id="allCities">
         <!-- placeholder='Select a City' -->
       <select v-on:change="captureCityName($event)">
+       <option :value="''" disabled selected>Select a City</option>
         <option v-for="city in cities" v-bind:key="city.id">
          {{city}} 
         </option>
