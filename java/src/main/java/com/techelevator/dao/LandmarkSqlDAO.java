@@ -79,7 +79,7 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 	@Override
 	public List<Landmark> getLandmarkByCity(String location) {
 		
-		String sql = "SELECT name, description, img FROM landmark WHERE location=?";
+		String sql = "SELECT name, description, img, operatingdays, openingtime, closingtime, venuetype FROM landmark WHERE location=?";
 		List<Landmark> landmarks = new ArrayList<Landmark>();
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location);
@@ -88,8 +88,12 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 			String name = results.getString("name");
 			String description = results.getString("description");
 			String img = results.getString("img");
+			String operatingDays = results.getString("operatingdays");
+			String openingTime = results.getString("openingtime");
+			String closingTime = results.getString("closingtime");
+			String venueType = results.getString("venuetype");
 			
-			Landmark afterLandmark = new Landmark(name, description, img);
+			Landmark afterLandmark = new Landmark(name, description, img, operatingDays, openingTime, closingTime, venueType);
 			landmarks.add(afterLandmark);
 		}
 		
