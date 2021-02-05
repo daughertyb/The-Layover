@@ -7,27 +7,30 @@
         <!-- <router-link v-bind:to="{ name: 'cityLandmark' }">City Landmark</router-link> -->
       </header>
 
+{{filter.city}} | {{filter.venue}} | {{filteredByVenueType}} | {{cities}}
       <section id="allCities">
         <!-- placeholder='Select a City' -->
-      <select v-on:change="captureCityName($event)">
+      <select v-model='filter.city'>
        <option :value="''" disabled selected>Select a City</option>
         <option v-for="city in cities" v-bind:key="city.id">
          {{city}} 
         </option>
       </select>
+
+      <select v-model='filter.venue'>
+       <option>Park</option>
+       <option>Museum</option>
+       <option>Zoo</option>
+       <option>Library</option>
+      </select>
+
       </section>
 
-         <section id="allVenueTypes">
-      <select>
-        <option v-for="venueType in venueType" v-bind:key="venueType.id">
-         {{venueType}} 
-        </option>
-      </select>
-      </section>
+    
       <table>
         <tr>
     
-          <tr v-for="option in cityResults" v-bind:key="option.name"> 
+          <tr v-for="option in filteredByVenueType" v-bind:key="option.name"> 
             <div class="results">
               <h2>{{ option.cityValue }}</h2>
         
@@ -56,14 +59,15 @@
             </div>
             </tr>
 
+<!--
       <section id="allVenueTypes">
       <select>
-        <option v-for="venueType in filteredByVenueType " v-bind:key="venueType.id">
+        <option v-for="venueType in filteredByVenueType " v-bind:key="venueType.name">
          {{venueType}} 
         </option>
       </select>
       </section>
-
+-->
 
  </table>
        
@@ -95,13 +99,13 @@ export default {
     },
 
     filter: {
+    city: '',
     venueType: '',
     operatingDays: '',
     openingTime: '',
     closingTime: '',
-
-
     }
+
   };
   },
     created() {
@@ -124,37 +128,23 @@ export default {
   computed: {
 
    filteredByVenueType() {
-      let filteredVenues = this.venueType;
-      if (this.filter.venueType != "") {
+      let filteredVenues = this.cityResults;
+      if (this.filter.city != "") {
         filteredVenues = filteredVenues.filter((option) =>
-          option.venueType
+          option.city
             .toLowerCase()
-            .includes(this.filter.venueType.toLowerCase())
+            .includes(this.filter.city.toLowerCase())
         );
       }
+
+      return filteredVenues;
    }
 
 
   },
 
   methods: {
-    captureCityName(event) {
-      const selectBox = event.target;
-      const index = event.target.selectedIndex;
 
-      const value = selectBox.options[index].value;
-      this.cityValue = value;
-
-      // 1. call your API here to get landmarks by city.
-        // 1a. When the results get back assign the results to an array in the data section.
-      
-    cityAPI.getLandmarkByCity(this.cityValue).then (
-      (response) => {
-        this.cityResults = response.data;
-        this.venueType.add(cityResults.venueType);
-      }
-    )
-    }
   }
 
   

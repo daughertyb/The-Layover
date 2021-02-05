@@ -14,7 +14,7 @@ public interface LandmarkDAO {
 	
 	int findIdByLandmarkName (String name);
 
-	List<Landmark> searchLandmarks(String day, String location, String venueType);
+	List<Landmark> searchLandmarks(String day, String location, String venueType, String openingTime, String closingTime);
 
 	List<String> allCities();
 

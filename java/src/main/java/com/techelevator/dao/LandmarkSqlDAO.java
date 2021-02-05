@@ -100,7 +100,7 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 		return landmarks;
 	}
 
-	@Override
+//	@Override
 	public List<Landmark> searchLandmarks(String day, String location, String venueType) {
 
 		String sql = "select landmark.name, landmark.openingtime, landmark.closingtime from landmark inner join daysopen on landmark.id = daysopen.landmarkid where daysopen."
@@ -166,6 +166,13 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 
 	@Override
 	public Landmark findLandmarkByVenueType(String venueType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Landmark> searchLandmarks(String day, String location, String venueType, String openingTime,
+			String closingTime) {
 		// TODO Auto-generated method stub
 		return null;
 	}
