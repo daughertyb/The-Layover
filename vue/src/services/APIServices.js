@@ -17,5 +17,9 @@ const http = axios.create({
       getLandmarkByCity(cityName){ 
         return http.get(`/landmarks-city/${cityName}`);   
       },
+
+      getAllLandmarks() {
+        return http.get('/get-all-landmarks')
+      }
     
   }

@@ -19,6 +19,7 @@ public class Landmark {
 	private String operatingDays;
 	private int thumbsUp;
 	private int thumbsDown;
+	private String vanueType;
 	
 	
 
@@ -42,11 +43,12 @@ public class Landmark {
 		
 	}
 	
-	public Landmark(String name, String openingTime, String closingTime, String operatingDays) {
+	public Landmark(String name, String openingTime, String closingTime, String operatingDays, String venueType) {
 		this.name = name;
 		this.openingTime = openingTime;
 		this.closingTime = closingTime;
 		this.operatingDays = operatingDays;
+		this.venueType = venueType;
 	}
 	
 	public Landmark(String name, String description, String images, String operatingDays, String openingTime, String closingTime, String venueType) {

@@ -103,7 +103,7 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 	@Override
 	public List<Landmark> searchLandmarks(String day, String location, String venueType) {
 	
-		String sql = "select landmark.name, landmark.openingtime, landmark.closingtime, landmark.operatingdays from landmark inner join daysopen on landmark.id = daysopen.landmarkid where daysopen." + day + " ='open' and location=? and venuetype=? and openingtime < localtime and closingtime > localtime";
+		String sql = "select landmark.name, landmark.openingtime, landmark.closingtime, landmark.operatingdays, landmark.venuetype from landmark inner join daysopen on landmark.id = daysopen.landmarkid where daysopen." + day + " ='open' and location=? and venuetype=? and openingtime < localtime and closingtime > localtime";
 		
 		List<Landmark> landmarks = new ArrayList<Landmark>();
 
@@ -115,8 +115,9 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 			String openingTimeActual = results.getString("openingtime");
 			String closingTimeActual = results.getString("closingtime");
 			String operatingDays = results.getString("operatingdays");
+			String venuetype = results.getString("venuetype");
 
-			Landmark afterLandmark = new Landmark(name, openingTimeActual, closingTimeActual, operatingDays);
+			Landmark afterLandmark = new Landmark(name, openingTimeActual, closingTimeActual, operatingDays, venuetype);
 			landmarks.add(afterLandmark);
 		}
 
