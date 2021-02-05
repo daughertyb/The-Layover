@@ -10,8 +10,17 @@
       <section id="allCities">
         <!-- placeholder='Select a City' -->
       <select v-on:change="captureCityName($event)">
+       <option :value="''" disabled selected>Select a City</option>
         <option v-for="city in cities" v-bind:key="city.id">
          {{city}} 
+        </option>
+      </select>
+      </section>
+
+         <section id="allVenueTypes">
+      <select>
+        <option v-for="venueType in venueType" v-bind:key="venueType.id">
+         {{venueType}} 
         </option>
       </select>
       </section>
@@ -73,6 +82,7 @@ export default {
       cityValue: "",
       cityChoice: [],
       cityResults: [],
+      venueType: [],
 
     landmarkByCity : {
     images: '',
@@ -141,6 +151,7 @@ export default {
     cityAPI.getLandmarkByCity(this.cityValue).then (
       (response) => {
         this.cityResults = response.data;
+        this.venueType.add(cityResults.venueType);
       }
     )
     }

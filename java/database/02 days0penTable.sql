@@ -39,3 +39,35 @@ insert into daysopen (landmarkid
 ,monday, tuesday, wednesday, thursday, friday,saturday, sunday)
 values ((select id from landmark where name='The Franklin Institute'),
 'close','close','open','open','open','open','open'); 
+
+insert into daysopen (landmarkid
+,monday, tuesday, wednesday, thursday, friday,saturday, sunday)
+values ((select id from landmark where name='Boston Public Library'),'open','open','open','open','open','open','close'); 
+
+
+insert into daysopen (landmarkid
+,monday, tuesday, wednesday, thursday, friday,saturday, sunday)
+values ((select id from landmark where name='USS Constitution'),'close','close','open','open','open','open','open'); 
+
+insert into daysopen (landmarkid
+,monday, tuesday, wednesday, thursday, friday,saturday, sunday)
+values ((select id from landmark where name='Millennium Park'),'open','open','open','open','open','open','close'); 
+
+
+insert into daysopen (landmarkid
+,monday, tuesday, wednesday, thursday, friday,saturday, sunday)
+values ((select id from landmark where name='Maggie Daley Park'),'open','open','open','open','open','open','open'); 
+
+
+insert into daysopen (landmarkid
+,monday, tuesday, wednesday, thursday, friday,saturday, sunday)
+values ((select id from landmark where name='Central Park'),'open','open','open','open','open','open','open'); 
+
+
+insert into daysopen (landmarkid
+,monday, tuesday, wednesday, thursday, friday,saturday, sunday)
+values ((select id from landmark where name='Empire State Building'),'open','open','open','open','open','open','open'); 
+
+
+
+
