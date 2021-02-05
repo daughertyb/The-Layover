@@ -15,6 +15,7 @@
         </select>
 
         <select v-model="filter.venueType">
+          <option :value="''" disabled selected>Select a Venue Type</option>
           <option>Park</option>
           <option>Museum</option>
           <option>Zoo</option>
