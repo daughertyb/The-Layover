@@ -46,6 +46,16 @@
                 </div>
             </div>
             </tr>
+
+      <section id="allVenueTypes">
+      <select>
+        <option v-for="venueType in filteredByVenueType " v-bind:key="venueType.id">
+         {{venueType}} 
+        </option>
+      </select>
+      </section>
+
+
  </table>
        
      
@@ -72,6 +82,15 @@ export default {
     operatingDays: '',
     openingTime: '',
     closingTime: ''
+    },
+
+    filter: {
+    venueType: '',
+    operatingDays: '',
+    openingTime: '',
+    closingTime: '',
+
+
     }
   };
   },
@@ -92,6 +111,22 @@ export default {
         }
       });
   }, 
+  computed: {
+
+   filteredByVenueType() {
+      let filteredVenues = this.venueType;
+      if (this.filter.venueType != "") {
+        filteredVenues = filteredVenues.filter((option) =>
+          option.venueType
+            .toLowerCase()
+            .includes(this.filter.venueType.toLowerCase())
+        );
+      }
+   }
+
+
+  },
+
   methods: {
     captureCityName(event) {
       const selectBox = event.target;
@@ -139,7 +174,8 @@ export default {
 
 #landmark-description {
 font-size: 30px;
-border: solid 2px;
+border: solid
+ 2px;
 padding-left: 20px;
 }
 
