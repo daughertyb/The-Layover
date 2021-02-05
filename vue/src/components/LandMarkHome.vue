@@ -4,19 +4,17 @@
       <header id="go-back-btn">
         <router-link to="/home">Go Back</router-link>
 
-        <!-- <router-link v-bind:to="{ name: 'cityLandmark' }">City Landmark</router-link> -->
       </header>
-{{filteredVenues}}
       <section id="allCities">
         <!-- placeholder='Select a City' -->
         <select v-model="filter.city">
-          <option :value="''" disabled selected>Select a City</option>
+          <option :value="''" disabled selected>Select a City To Explore</option>
           <option v-for="city in cities" v-bind:key="city.id">
             {{ city }}
           </option>
         </select>
 
-        <select v-model="filter.venue">
+        <select v-model="filter.venueType">
           <option>Park</option>
           <option>Museum</option>
           <option>Zoo</option>
@@ -55,15 +53,6 @@
           </div>
         </tr>
 
-        <!--
-      <section id="allVenueTypes">
-      <select>
-        <option v-for="landmark in filteredLandmarks" v-bind:key="landmark.name">
-         {{landmark}} 
-        </option>
-      </select>
-      </section>
--->
       </table>
     </div>
   </div>
@@ -76,13 +65,9 @@ export default {
     return {
       cities: [],
       cityValue: "",
-
-      // cityResults: [],
-      venueType: [],
       allLandmarks: [],
-
       landmarkByCity: {
-        images: "",
+      images: "",
         name: "",
         description: "",
         venueType: "",
@@ -119,46 +104,30 @@ export default {
       this.allLandmarks = response.data;
     });
   },
+
   computed: {
-    //   filteredByVenueType() {
-    //     let filteredVenues = this.cityResults;
-    //     if (this.filter.city != "") {
-    //       filteredVenues = filteredVenues.filter((option) =>
-    //         option.city
-    //           .toLowerCase()
-    //           .includes(this.filter.city.toLowerCase())
-    //       );
-    //     }
-    //     return filteredVenues;
-    //  }
 
     filteredLandmarks() {
       let filteredVenues = this.allLandmarks;
       if (this.filter.city != "") {
-        filteredVenues = filteredVenues.filter((option) =>
-          option.city.includes(this.filter.city)
+        
+        filteredVenues = filteredVenues.filter((option) => 
+           option.location.includes(this.filter.city)
+               
         );
       }
-      return filteredVenues;
-    },
 
-     filteredVenueType() {
-      let filteredVenues = this.allLandmarks;
       if (this.filter.venueType != "") {
+
         filteredVenues = filteredVenues.filter((option) =>
-          option.city.toLowerCase().includes(this.filter.venueType.toLowerCase())
+          option.venueType.includes(this.filter.venueType)
         );
       }
+
       return filteredVenues;
     },
-
 
   },
-
-
-
-
-  methods: {},
 };
 </script>
 

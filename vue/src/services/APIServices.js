@@ -6,11 +6,8 @@ const http = axios.create({
 
 
   export default { 
-      searchLandmark(day, location, venueType, CurrentTime){
-        return http.get(`/search-landmarks/${day}/${location}/${venueType}/${CurrentTime}`)
-      },
     
-      allCities(){ 
+     allCities(){ 
         return http.get('/cities');   
       },
 
