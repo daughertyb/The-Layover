@@ -36,8 +36,8 @@ public class LandmarkController {
 	
 	@RequestMapping(path="/search-landmarks", method=RequestMethod.GET)
 	public List<Landmark> searchLandmarks(@RequestParam String day, @RequestParam String location,
-			@RequestParam String venueType,  @RequestParam String currentTime) {
-		List<Landmark> landmarkByName = dao.searchLandmarks(day, location, venueType, currentTime);
+			@RequestParam String venueType) {
+		List<Landmark> landmarkByName = dao.searchLandmarks(day, location, venueType);
 		return landmarkByName;
 	} 
 	
