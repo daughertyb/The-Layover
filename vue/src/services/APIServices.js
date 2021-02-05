@@ -6,8 +6,8 @@ const http = axios.create({
 
 
   export default { 
-      searchLandmark(user, day, location, venueType){
-        return http.get(`/search-landmarks/${day}/${location}/${venueType}`,user)
+      searchLandmark(day, location, venueType, openingTime, closingTime){
+        return http.get(`/search-landmarks/${day}/${location}/${venueType}/${openingTime}/${closingTime}`)
       },
     
       allCities(){ 

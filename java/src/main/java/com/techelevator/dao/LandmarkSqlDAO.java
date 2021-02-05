@@ -101,10 +101,15 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 	}
 
 //	@Override
-	public List<Landmark> searchLandmarks(String day, String location, String venueType) {
+	public List<Landmark> searchLandmarks(String day, String location, String venueType, String openingTime, String closingTime) {
 
+//		String sql = "select landmark.name, landmark.openingtime, landmark.closingtime from landmark inner join daysopen on landmark.id = daysopen.landmarkid where daysopen."
+//				+ day + "='open' AND location=? AND venuetype=?";
+	
 		String sql = "select landmark.name, landmark.openingtime, landmark.closingtime from landmark inner join daysopen on landmark.id = daysopen.landmarkid where daysopen."
-				+ day + "='open' AND location=? AND venuetype=?";
+				+ day + "='open' AND location=? AND venuetype=? AND " + openingTime + "< localTime AND " + closingTime + "> localTime";
+		
+		
 		List<Landmark> landmarks = new ArrayList<Landmark>();
 
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location, venueType);
@@ -112,11 +117,11 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 		while (results.next()) {
 
 			String name = results.getString("name");
-			String openingTime = results.getString("openingtime");
-			String closingTime = results.getString("closingtime");
+			String openingTimeActual = results.getString("openingtime");
+			String closingTimeActual = results.getString("closingtime");
 			String operatingDays = results.getString("operatingdays");
 
-			Landmark afterLandmark = new Landmark(name, openingTime, closingTime, operatingDays);
+			Landmark afterLandmark = new Landmark(name, openingTimeActual, closingTimeActual, operatingDays);
 			landmarks.add(afterLandmark);
 		}
 
@@ -170,12 +175,7 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 		return null;
 	}
 
-	@Override
-	public List<Landmark> searchLandmarks(String day, String location, String venueType, String openingTime,
-			String closingTime) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	
 
