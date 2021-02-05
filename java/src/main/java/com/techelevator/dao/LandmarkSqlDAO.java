@@ -101,13 +101,13 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 	}
 
 //	@Override
-	public List<Landmark> searchLandmarks(String day, String location, String venueType, String openingTime, String closingTime) {
+	public List<Landmark> searchLandmarks(String day, String location, String venueType, String CurrentTime) {
 
 //		String sql = "select landmark.name, landmark.openingtime, landmark.closingtime from landmark inner join daysopen on landmark.id = daysopen.landmarkid where daysopen."
 //				+ day + "='open' AND location=? AND venuetype=?";
 	
 		String sql = "select landmark.name, landmark.openingtime, landmark.closingtime from landmark inner join daysopen on landmark.id = daysopen.landmarkid where daysopen."
-				+ day + "='open' AND location=? AND venuetype=? AND " + openingTime + "< localTime AND " + closingTime + "> localTime";
+				+ day + "='open' AND location=? AND venuetype=? AND  openingTime < + " + CurrentTime + " AND closingTime + > " + CurrentTime;
 		
 		
 		List<Landmark> landmarks = new ArrayList<Landmark>();
