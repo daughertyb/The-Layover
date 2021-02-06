@@ -9,9 +9,70 @@ public class Itinerary {
 	private LocalDate date;
 	private double latitude;
 	private double longitude;
+	private int ItineraryId;
+	private long userId;
+	private long landmarkId;
 	
 	
 	
+	public Itinerary(int ItineraryId, int userId, int landmarkId) {
+		this.ItineraryId = ItineraryId;
+		this.userId = userId;
+		this.landmarkId = landmarkId;
+	}
+	
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public int getItineraryId() {
+		return ItineraryId;
+	}
+
+	public void setItineraryId(int itineraryId) {
+		ItineraryId = itineraryId;
+	}
+
+	
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public long getLandmarkId() {
+		return landmarkId;
+	}
+
+	public void setLandmarkId(long landmarkId) {
+		this.landmarkId = landmarkId;
+	}
+
+	public void setLandmarkId(int landmarkId) {
+		this.landmarkId = landmarkId;
+	}
+
 	public Itinerary(String name, String startPoint, LocalDate date) {
 		this.name = name;
 		this.startPoint = startPoint;

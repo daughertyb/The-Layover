@@ -2,14 +2,20 @@ package com.techelevator.dao;
 
 import java.sql.PreparedStatement;
 
+
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
+
 import com.techelevator.model.Itinerary;
 import com.techelevator.model.Landmark;
 import com.techelevator.model.User;
 
+
+@Component
 public class ItinerarySqlDAO implements ItineraryDAO {
 	
 	boolean itineraryCreated = false;
@@ -39,6 +45,12 @@ public class ItinerarySqlDAO implements ItineraryDAO {
 
 	@Override
 	public Itinerary changeItineraryStartLocation(Landmark id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Itinerary addLandmarkToItinerary(Landmark id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
