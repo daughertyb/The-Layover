@@ -17,26 +17,53 @@ import com.techelevator.model.User;
 
 @Component
 public class ItinerarySqlDAO implements ItineraryDAO {
-	
-	boolean itineraryCreated = false;
-	
-    private JdbcTemplate jdbcTemplate;
-	
 
+	  	private JdbcTemplate jdbcTemplate;
+
+	    public ItinerarySqlDAO(JdbcTemplate jdbcTemplate) {
+	        this.jdbcTemplate = jdbcTemplate;
+	    }
+	
+// adding Itinerary inside the table
 	@Override
 	public void createItinerary(Long userId, int landmarkid) {
-		String sql = "insert into itinerary (userid, landmarkid) values (?, ?)";
+		String sql = "insert into itinerary (userid, landmarkid) values (" + userId + " , " + landmarkid + ")";
 		
-		jdbcTemplate.update(sql, userId, landmarkid);
+		jdbcTemplate.update(sql);
+		
 		System.out.println("###############################################5");
 	}	
 		
-
+// delete all Itineraries for a user
 	@Override
-	public Itinerary deleteLandmarkToItinerary(Landmark id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void deleteLandmarkToItinerary(long id) {
+		
+		String sql = "delete from Itinerary where userid = ?";
+		
+		jdbcTemplate.update(sql, id);
+
 	}
+	
+	@Override
+	public void deleteSingleLandmarkToItinerary(long id, int landmarkId) {
+		
+		String sql = "delete from Itinerary where userid = ? and landmarkid = ?";	
+		
+		jdbcTemplate.update(sql, id, landmarkId );
+		
+	}
+	
+	
+	
+	
+//	@Override
+//	public void deleteLandmarkToItinerary(Landmark id) {
+//		String sql = "delete from Itinerary where userid = ?";
+//		
+//		jdbcTemplate.update(sql, id);
+//
+//	}
+	
 
 	@Override
 	public Itinerary changeItineraryStartLocation(Landmark id) {
@@ -49,5 +76,7 @@ public class ItinerarySqlDAO implements ItineraryDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

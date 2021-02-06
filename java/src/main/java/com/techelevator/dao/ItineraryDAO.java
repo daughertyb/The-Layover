@@ -13,8 +13,14 @@ public interface ItineraryDAO {
 	//should only need to take in a landmark id to add?
 	Itinerary addLandmarkToItinerary (Landmark id);
 
-	Itinerary deleteLandmarkToItinerary (Landmark id);
+	public void deleteLandmarkToItinerary (long id);
+	
+	public void deleteSingleLandmarkToItinerary (long id, int landmarkId);
+	
+//	public void deleteLandmarkToItinerary (Landmark id);
 	
 	//may need to take in a different param
 	Itinerary changeItineraryStartLocation (Landmark id);
+	
+	
 }

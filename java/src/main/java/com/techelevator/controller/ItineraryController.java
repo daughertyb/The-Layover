@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techelevator.dao.ItineraryDAO;
 
 import com.techelevator.dao.UserDAO;
-
+import com.techelevator.model.Landmark;
 
 import java.security.Principal;
 
@@ -34,32 +34,31 @@ public class ItineraryController {
 	
 	
 	@RequestMapping(path="/add-itinerary/{id}", method= RequestMethod.POST)
-	public void createItinerary (@PathVariable int id) {  // @RequestBody Itinerary itinerary 
-	//	long userId = userDAO.findIdByUsername(principal.getName());
+	
+	public void createItinerary (@PathVariable int id, Principal principal) {  // @RequestBody Itinerary itinerary 
 		
-		long userId = 1;
+		long userId = userDAO.findIdByUsername(principal.getName());
+		
+		
 		dao.createItinerary(userId, id);
 	
 		
 	}
 	
+	@RequestMapping(path="/delete-itinerary/{userId}", method= RequestMethod.DELETE)
+	public void deleteItinerary (@PathVariable long userId, Principal principal) {
+		
+		dao.deleteLandmarkToItinerary(userId);
+	}
 	
-//	@RequestMapping (path = "/requestreject/{transId}", method = RequestMethod.POST)
-//	public void requestReject (@PathVariable int transId , @RequestBody Transfer transfer) {
-//		
-//		transferSqlDAO.requestReject(transId);
-//	}
+	@RequestMapping(path="/delete-single-itinerary/{landmarkId}", method= RequestMethod.DELETE)
+	public void deleteItinerary (@PathVariable int landmarkId, Principal principal) {
+		
+		long userId = userDAO.findIdByUsername(principal.getName());
+		
+		dao.deleteSingleLandmarkToItinerary(userId, landmarkId);
+	}
 	
-//	   @ResponseStatus(HttpStatus.CREATED)
-//	    @RequestMapping(value = "/register", method = RequestMethod.POST)
-//	    public void register(@Valid @RequestBody RegisterUserDTO newUser) {
-//	        try {
-//	            User user = userDAO.findByUsername(newUser.getUsername());
-//	            throw new UserAlreadyExistsException();
-//	        } catch (UsernameNotFoundException e) {
-//	            userDAO.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
-//	        }
-//	    }
 	
 
 
