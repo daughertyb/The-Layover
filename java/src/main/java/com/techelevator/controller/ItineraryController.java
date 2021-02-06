@@ -7,7 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,23 +21,25 @@ import com.techelevator.dao.UserDAO;
 import java.security.Principal;
 
 
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @PreAuthorize("isAuthenticated()")
 public class ItineraryController {
 	
-	private UserDAO userDAO;
+	@Autowired
+	UserDAO userDAO;
 	
 	@Autowired
 	ItineraryDAO dao;
 	
 	
 	@RequestMapping(path="/add-itinerary/{id}", method= RequestMethod.POST)
-	public void createItinerary (@PathVariable int id, Principal principal) {  // @RequestBody Itinerary itinerary 
+	public void createItinerary (@PathVariable int id) {  // @RequestBody Itinerary itinerary 
+	//	long userId = userDAO.findIdByUsername(principal.getName());
 		
-		long userId = userDAO.findIdByUsername(principal.getName());
-		
+		long userId = 1;
 		dao.createItinerary(userId, id);
+	
 		
 	}
 	

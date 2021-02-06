@@ -8,7 +8,7 @@ public interface ItineraryDAO {
 	
 	
 	//needs to pass in user id to create Itinerary?
-	void createItinerary (Long userId, int landmarkid);
+	public void createItinerary (Long userId, int landmarkid);
 	
 	//should only need to take in a landmark id to add?
 	Itinerary addLandmarkToItinerary (Landmark id);

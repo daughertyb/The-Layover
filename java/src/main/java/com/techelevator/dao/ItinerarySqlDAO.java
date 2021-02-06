@@ -25,17 +25,12 @@ public class ItinerarySqlDAO implements ItineraryDAO {
 
 	@Override
 	public void createItinerary(Long userId, int landmarkid) {
-		
 		String sql = "insert into itinerary (userid, landmarkid) values (?, ?)";
 		
 		jdbcTemplate.update(sql, userId, landmarkid);
+		System.out.println("###############################################5");
 	}	
 		
-//	@Override
-//	public Itinerary addLandmarkToItinerary(Landmark id) {
-//		String sql = ""
-//		return null;
-//	}
 
 	@Override
 	public Itinerary deleteLandmarkToItinerary(Landmark id) {
