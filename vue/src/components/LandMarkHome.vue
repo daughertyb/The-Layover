@@ -1,25 +1,24 @@
 <template>
   <div>
     <div class="mainPage">
-      <header id="go-back-btn">
-        <router-link to="/home">Go Back</router-link>
+      <header id="title">
+        <H1>Select a City and Venue Type Type to Explore</H1>
 
       </header>
       <section id="allCities">
         <!-- placeholder='Select a City' -->
         <select v-model="filter.city">
-          <option :value="''" disabled selected>Select a City To Explore</option>
+          <option :value="''" disabled selected>All Cities</option>
           <option v-for="city in cities" v-bind:key="city.id">
             {{ city }}
           </option>
         </select>
 
         <select v-model="filter.venueType">
-          <option :value="''" disabled selected>Select a Venue Type</option>
-          <option>Park</option>
-          <option>Museum</option>
-          <option>Zoo</option>
-          <option>Library</option>
+          <option :value="''" disabled selected>All Venues</option>
+          <option v-for="venueType in filteredLandmarks" v-bind:key="venueType.id">
+            {{venueType.venueType}}
+          </option>
         </select>
       </section>
        <table>
@@ -105,6 +104,15 @@ export default {
       this.allLandmarks = response.data;
     });
   },
+    methods: {
+    venueTypeFilter: function(val) {
+      if(allVenueTypes.indexOf(val.id) === -1) {
+        arr.push(val.id);
+        return val.id;
+      }
+    }
+  },
+
 
   computed: {
 
@@ -122,13 +130,14 @@ export default {
 
         filteredVenues = filteredVenues.filter((option) =>
           option.venueType.includes(this.filter.venueType)
+         
         );
       }
-
       return filteredVenues;
     },
 
   },
+  
 };
 </script>
 

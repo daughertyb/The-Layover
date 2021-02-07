@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Landmarks from '../components/LandMarkHome.vue'
-import CityLandmarks from '../components/CityLandmarks.vue'
+
 
 
 
@@ -25,16 +24,9 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+   
     {
       path: '/',
-      name: 'home',
-      component: Home,
-      meta: {
-        requiresAuth: true
-      }    
-    },
-    {
-      path: '/cities',
       name: 'allCities',
       component: Landmarks,
       meta: {
@@ -42,15 +34,7 @@ const router = new Router({
       }
 
     },
-    {
-      path: '/landmarks-city',
-      name: 'allCities',
-      component: CityLandmarks,
-      meta: {
-        requiresAuth: true
-      }
-
-    },
+ 
     {
       path: "/login",
       name: "login",
