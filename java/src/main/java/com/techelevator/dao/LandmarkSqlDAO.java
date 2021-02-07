@@ -139,7 +139,6 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 		return jdbcTemplate.queryForObject("select id from landmark where name = ?", int.class, name);
 	}
 
-	// coordinates?
 //	private Landmark mapRowToLandmark(SqlRowSet rs) {
 //		Landmark landmark = new Landmark();
 //        landmark.setName(rs.getString("name"));

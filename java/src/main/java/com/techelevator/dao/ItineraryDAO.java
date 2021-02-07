@@ -7,17 +7,14 @@ import com.techelevator.model.User;
 public interface ItineraryDAO {
 	
 	
-	//needs to pass in user id to create Itinerary?
+
 	public void createItinerary (Long userId, int landmarkid);
 	
-	//should only need to take in a landmark id to add?
 	Itinerary addLandmarkToItinerary (Landmark id);
 
-	public void deleteLandmarkToItinerary (long id);
+	public void deleteItinerary (long id);
 	
-	public void deleteSingleLandmarkToItinerary (long id, int landmarkId);
-	
-//	public void deleteLandmarkToItinerary (Landmark id);
+	public void deleteLandmarkFromItinerary (long id, int landmarkId);
 	
 	//may need to take in a different param
 	Itinerary changeItineraryStartLocation (Landmark id);

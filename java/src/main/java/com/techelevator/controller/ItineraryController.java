@@ -48,7 +48,7 @@ public class ItineraryController {
 	@RequestMapping(path="/delete-itinerary/{userId}", method= RequestMethod.DELETE)
 	public void deleteItinerary (@PathVariable long userId, Principal principal) {
 		
-		dao.deleteLandmarkToItinerary(userId);
+		dao.deleteItinerary(userId);
 	}
 	
 	@RequestMapping(path="/delete-single-itinerary/{landmarkId}", method= RequestMethod.DELETE)
@@ -56,7 +56,7 @@ public class ItineraryController {
 		
 		long userId = userDAO.findIdByUsername(principal.getName());
 		
-		dao.deleteSingleLandmarkToItinerary(userId, landmarkId);
+		dao.deleteLandmarkFromItinerary(userId, landmarkId);
 	}
 	
 	

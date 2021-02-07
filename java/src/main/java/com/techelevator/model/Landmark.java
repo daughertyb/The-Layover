@@ -22,7 +22,29 @@ public class Landmark {
 	private String vanueType;
 	
 	
+	private String totalDistance;
+	private String totalDuration;
+	private String directions;
+	private String startPoint;
+	private String endPoint;
+	
+	public Landmark() {
+	}
+	
+	
+	//Constructor for Total Distance between Landmarks
+	public Landmark(String totalDistance, String totalDuration) {
+		this.totalDistance = totalDistance;
+		this.totalDuration = totalDuration;
+		
+	}
+	
+	//Constructor to generate travel route between Landmarks
+		public Landmark(String directions) {
+			this.directions = directions;
+		}
 
+	
 	public Landmark(long id, String name, String description, String img, String operatingDays, String openingTime,
 		String closingTime, String venueType, String location, String address, int thumbsUp, int thumbsDown,
 		double latitude, double longitude) {
@@ -75,17 +97,6 @@ public class Landmark {
 	public String getName() {
 		return name;
 	}
-	//need more logic within coordinates lat and long
-	//possibly need toString
-	public String getCoordinates() {
-		return coordinates;
-	}
-	
-//	public void setCoordinates(double latitude, double longitude) {
-//		this.setLatitude(latitude);
-//		this.setLongitude(longitude);
-//	}
-
 
 	public void setName(String name) {
 		this.name = name;
@@ -232,6 +243,20 @@ public class Landmark {
 	}
 
 
+
+	public String getDirections() {
+		return directions;
+	}
+
+	public String getStartPoint() {
+		startPoint = latitude + "," + longitude;
+		return startPoint;
+	}
+
+	public String getEndPoint() {
+		endPoint = latitude + "," + longitude;
+		return endPoint;
+	}
 
 	public void setCoordinates(String coordinates) {
 		this.coordinates = coordinates;

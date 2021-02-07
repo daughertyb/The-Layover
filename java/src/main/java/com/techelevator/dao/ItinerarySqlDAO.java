@@ -24,28 +24,28 @@ public class ItinerarySqlDAO implements ItineraryDAO {
 	        this.jdbcTemplate = jdbcTemplate;
 	    }
 	
-// adding Itinerary inside the table
+// creates an itinerary for user
 	@Override
 	public void createItinerary(Long userId, int landmarkid) {
-		String sql = "insert into itinerary (userid, landmarkid) values (" + userId + " , " + landmarkid + ")";
+		String sql = "insert into itinerary (userid, landmarkid) values (? , ?)";
 		
-		jdbcTemplate.update(sql);
+		jdbcTemplate.update(sql, userId, landmarkid);
 		
-		System.out.println("###############################################5");
 	}	
 		
-// delete all Itineraries for a user
+// deletes ENTIRE itinerary for user
 	@Override
-	public void deleteLandmarkToItinerary(long id) {
+	public void deleteItinerary(long id) {
 		
 		String sql = "delete from Itinerary where userid = ?";
 		
 		jdbcTemplate.update(sql, id);
 
 	}
-	
+
+//deletes a single landmark from user's itinerary
 	@Override
-	public void deleteSingleLandmarkToItinerary(long id, int landmarkId) {
+	public void deleteLandmarkFromItinerary(long id, int landmarkId) {
 		
 		String sql = "delete from Itinerary where userid = ? and landmarkid = ?";	
 		
@@ -53,16 +53,6 @@ public class ItinerarySqlDAO implements ItineraryDAO {
 		
 	}
 	
-	
-	
-	
-//	@Override
-//	public void deleteLandmarkToItinerary(Landmark id) {
-//		String sql = "delete from Itinerary where userid = ?";
-//		
-//		jdbcTemplate.update(sql, id);
-//
-//	}
 	
 
 	@Override
