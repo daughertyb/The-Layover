@@ -20,8 +20,17 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {}
+
+    // Andy: Add an array that captures all the selected marks.
+    // If you want to refer to this array outside of this file
+    // you want to say: $store.state.landmarks.
+
   },
   mutations: {
+
+    // Andy: You need a mutator to replace what's in the landmarks array
+    // with what the caller of the mutator passes in.
+
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);

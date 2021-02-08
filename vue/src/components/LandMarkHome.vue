@@ -3,8 +3,10 @@
     <div class="mainPage">
       <header id="title">
         <H1>Select a City and Venue Type Type to Explore</H1>
-
       </header>
+          <div>
+            <button class="topItineraryButton">Add Items to Itinerary</button>
+            </div>
       <section id="allCities">
         <!-- placeholder='Select a City' -->
         <select v-model="filter.city">
@@ -16,12 +18,15 @@
 
         <select v-model="filter.venueType">
           <option :value="''" disabled selected>All Venues</option>
-          <option v-for="venueType in filteredLandmarks" v-bind:key="venueType.id">
-            {{venueType.venueType}}
+          <option
+            v-for="venueType in filteredLandmarks"
+            v-bind:key="venueType.id"
+          >
+            {{ venueType.venueType }}
           </option>
         </select>
       </section>
-       <table>
+      <table>
         <tr></tr>
 
         <tr v-for="option in filteredLandmarks" v-bind:key="option.id">
@@ -52,16 +57,21 @@
             </div>
             <div>
               <input
-              type="checkbox"
-              v-on:change="selectLandmark(option.name, option.images, option.venueType, option.description)"
-              v-bind:id="option.id"
-              v-bind:value="option.id"
-             
-            />
+                type="checkbox"
+                v-on:change="
+                  selectLandmark(
+                    option.name,
+                    option.images,
+                    option.venueType,
+                    option.description
+                  )
+                "
+                v-bind:id="option.id"
+                v-bind:value="option.id"
+              />
             </div>
           </div>
         </tr>
-
       </table>
     </div>
   </div>
@@ -77,14 +87,14 @@ export default {
       allLandmarks: [],
       selectedLandmarks: [],
       landmarkByCity: {
-      images: "",
+        images: "",
         name: "",
         description: "",
         venueType: "",
         operatingDays: "",
         openingTime: "",
         closingTime: "",
-        isChecked: false
+        isChecked: false,
       },
 
       filter: {
@@ -94,12 +104,12 @@ export default {
         openingTime: "",
         closingTime: "",
       },
-        selectedLandmark: {
+      selectedLandmark: {
         name: "",
         images: "",
         venueType: "",
         description: "",
-      }
+      },
     };
   },
   created() {
@@ -121,57 +131,55 @@ export default {
       this.allLandmarks = response.data;
     });
   },
-    methods: {
-    venueTypeFilter: function(val) {
-      if(this.allVenueTypes.indexOf(val.id) === -1) {
+  methods: {
+    venueTypeFilter: function (val) {
+      if (this.allVenueTypes.indexOf(val.id) === -1) {
         //arr.push(val.id);
         return val.id;
       }
     },
 
-    selectLandmark: function(n, i, v, d) {
-       this.selectedLandmark.name = n;
-       this.selectedLandmark.images = i;
-       this.selectedLandmark.venueType = v;
-       this.selectedLandmark.description = d;
+    selectLandmark(n, i, v, d) {
+      this.selectedLandmark.name = n;
+      this.selectedLandmark.images = i;
+      this.selectedLandmark.venueType = v;
+      this.selectedLandmark.description = d;
 
-        for (i=0; i < this.selectedLandmarks.length; i++){
-       if (this.selectedLandmark == this.selectedLandmarks[i]) {
-         console.log("am I here?");
-         this.selectedLandmarks.remove(this.selectedLandmark);
-       } else {
-         this.selectedLandmarks.push(this.selectedLandmark);
-       }
+      if (this.selectedLandmarks.length == 0) {
+        this.selectedLandmarks.push(this.selectedLandmark);
+        window.alert(selectedLandmark.name + "added to array");
+      } else {
+        for (let i = 0; i < this.selectedLandmarks.length; i++) {
+          window.alert(this.selectedLandmarks[i].name);
+          window.alert(this.selectedLandmark.name);
+          if (this.selectedLandmark.name != this.selectedLandmarks[i].name) {
+            window.alert("made it into the not equal to logic");
+            this.selectedLandmarks.push(this.selectedLandmark);
+            } else {
+            this.selectedLandmarks.splice(this.selectedLandmark);
+          }
         }
-
-    }
+      }
+    },
   },
 
-
   computed: {
-
     filteredLandmarks() {
       let filteredVenues = this.allLandmarks;
       if (this.filter.city != "") {
-        
-        filteredVenues = filteredVenues.filter((option) => 
-           option.location.includes(this.filter.city)
-               
+        filteredVenues = filteredVenues.filter((option) =>
+          option.location.includes(this.filter.city)
         );
       }
 
       if (this.filter.venueType != "") {
-
         filteredVenues = filteredVenues.filter((option) =>
           option.venueType.includes(this.filter.venueType)
-         
         );
       }
       return filteredVenues;
     },
-
   },
-  
 };
 </script>
 
@@ -181,6 +189,11 @@ export default {
   display: grid;
   border: solid 3px;
   padding: 50px;
+}
+
+.topItineraryButton {
+  display: flex;
+  justify-content: space-between;
 }
 
 #landmark-imgs {
