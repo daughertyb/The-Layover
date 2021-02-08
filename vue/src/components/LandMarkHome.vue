@@ -1,12 +1,17 @@
 <template>
-  <div>
-    <div class="mainPage">
+  <div class="mainPage">
+    <div>
       <header id="title">
-        <H1>Select a City and Venue Type Type to Explore</H1>
+        <H1>Select a City and Venue Type to Explore</H1>
+        <!-- <button class="top-Itinerary-Button">Add Items to Itinerary</button> -->
       </header>
-          <div>
-            <button class="topItineraryButton">Add Items to Itinerary</button>
-            </div>
+
+      <div class="box-1">
+        <div class="btn btn-one">
+          <span>Add Items to Itinerary</span>
+        </div>
+      </div>
+
       <section id="allCities">
         <!-- placeholder='Select a City' -->
         <select v-model="filter.city">
@@ -72,6 +77,13 @@
             </div>
           </div>
         </tr>
+        <footer>
+     <div class="box-1">
+        <div class="btn btn-one">
+          <span>Add Items to Itinerary</span>
+        </div>
+      </div>
+     </footer>
       </table>
     </div>
   </div>
@@ -155,7 +167,7 @@ export default {
           if (this.selectedLandmark.name != this.selectedLandmarks[i].name) {
             window.alert("made it into the not equal to logic");
             this.selectedLandmarks.push(this.selectedLandmark);
-            } else {
+          } else {
             this.selectedLandmarks.splice(this.selectedLandmark);
           }
         }
@@ -185,16 +197,102 @@ export default {
 
 
 <style>
+@import "https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300";
+
+/* html,
+/* body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-family: "Open Sans Condensed", sans-serif;
+} */ 
+
+div[class*="box"] {
+  height: 33.33%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Top one makes whole color of button */
+.box-1 {
+  background-color: #4063a581;
+}
+
+
+.btn {
+  line-height: 50px;
+  height: 50px;
+  text-align: center;
+  width: 250px;
+  cursor: pointer;
+}
+
+.btn-one {
+  /* Button text color */
+  color: rgb(0, 0, 0);  
+  transition: all 0.3s;
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.btn-one span {
+  transition: all 0.3s;
+}
+.btn-one::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-top-color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+  transform: scale(0.1, 1);
+}
+.btn-one:hover span {
+  letter-spacing: 3px;
+}
+.btn-one:hover::before {
+  opacity: 1;
+  transform: scale(1, 1);
+}
+.btn-one::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.3s;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.btn-one:hover::after {
+  opacity: 0;
+  transform: scale(0.1, 1);
+}
+
+/* ---------------------------------------------------------------------------------------------------------------------------- */
 .results {
   display: grid;
   border: solid 3px;
   padding: 50px;
 }
 
-.topItineraryButton {
-  display: flex;
-  justify-content: space-between;
-}
 
 #landmark-imgs {
   margin-left: auto;
@@ -210,14 +308,18 @@ export default {
   font-size: 30px;
   border: solid 2px;
   padding-left: 20px;
+  padding-bottom: 20px;
+  font-weight: 500;
 }
 
-#mainPage {
+.mainPage {
+  font-family: "Open Sans Condensed", sans-serif;
 }
 
 h2 {
   display: flex;
   justify-content: center;
+  font-size: 2rem;
 }
 
 div > header {
