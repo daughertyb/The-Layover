@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.model.Landmark;
-import com.techelevator.services.RoutesService;
+import com.techelevator.service.RoutesService;
 
 @RestController
 public class RoutesController {
@@ -30,7 +30,7 @@ public class RoutesController {
 		
 	}
 	
-	@RequestMapping(path="/directions", method=RequestMethod.GET)
+	@RequestMapping(path="/test/directions", method=RequestMethod.GET)
 	public List<String> generateTravelRoute(@RequestParam String waypointStartQuery, @RequestParam String waypointEndQuery, @RequestParam String[] routeQuery) {
 				
 		return routesService.generateTravelRoute(waypointStartQuery, waypointEndQuery, routeQuery);

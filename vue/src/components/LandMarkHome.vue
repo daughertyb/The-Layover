@@ -8,7 +8,7 @@
 
       <div class="box-1">
         <div class="btn btn-one">
-          <span>Add Items to Itinerary</span>
+          <span>Create an Itinerary</span>
         </div>
       </div>
 
@@ -80,7 +80,7 @@
         <footer>
      <div class="box-1">
         <div class="btn btn-one">
-          <span>Add Items to Itinerary</span>
+          <span>Create an Itinerary</span>
         </div>
       </div>
      </footer>
@@ -164,11 +164,11 @@ export default {
         for (let i = 0; i < this.selectedLandmarks.length; i++) {
           window.alert(this.selectedLandmarks[i].name);
           window.alert(this.selectedLandmark.name);
-          if (this.selectedLandmark.name != this.selectedLandmarks[i].name) {
-            window.alert("made it into the not equal to logic");
-            this.selectedLandmarks.push(this.selectedLandmark);
-          } else {
+          if (this.selectedLandmark.name === this.selectedLandmarks[i].name) {
             this.selectedLandmarks.splice(this.selectedLandmark);
+            window.alert("made it into the not equal to logic");
+          } else {
+            this.selectedLandmarks.push(this.selectedLandmark);
           }
         }
       }
@@ -216,14 +216,14 @@ div[class*="box"] {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: right;
 }
 
 
 /* Top one makes whole color of button */
-.box-1 {
+/* .box-1 {
   background-color: #4063a581;
-}
+} */
 
 
 .btn {
@@ -232,15 +232,19 @@ div[class*="box"] {
   text-align: center;
   width: 250px;
   cursor: pointer;
+  
 }
 
 .btn-one {
   /* Button text color */
+  background-color: #4063a581;
   color: rgb(0, 0, 0);  
   transition: all 0.3s;
   position: relative;
   font-size: 1.5rem;
   font-weight: 600;
+  border-radius: 25px;
+  
 }
 .btn-one span {
   transition: all 0.3s;
@@ -265,6 +269,7 @@ div[class*="box"] {
 }
 .btn-one:hover span {
   letter-spacing: 3px;
+  
 }
 .btn-one:hover::before {
   opacity: 1;
@@ -366,5 +371,6 @@ html {
 select {
   font-size: 20px;
   background-color: rgba(123, 112, 230, 0.479);
+  margin-top: 10px;
 }
 </style>

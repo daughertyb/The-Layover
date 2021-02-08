@@ -1,9 +1,7 @@
-package com.techelevator.services;
+package com.techelevator.service;
 import com.techelevator.model.Landmark;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -14,10 +12,8 @@ import com.techelevator.model.Landmark;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 @Component
 public class RoutesService {
-
 	@Value("${maps.googleapis.url}")
 	private String apiUrl;
 	@Value("${derek.google.api.key}")
@@ -25,7 +21,6 @@ public class RoutesService {
 	Landmark landmark = new Landmark();
 	
 	
-
 	// generates travel distance and time between starting location and ending location
 	public List<Landmark> generateTravelDuration(String startPoint, String endPoint) {
 		
@@ -41,9 +36,7 @@ public class RoutesService {
 		JsonNode jsonNode;
 		
 		List<Landmark> travelDurationList = new ArrayList<Landmark>();
-
 		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
-
 		try {
 			jsonNode = objectMapper.readTree(response.getBody());
 			for (int i = 0, j = 0; i < jsonNode.path("routes").size(); i++, j++) {
@@ -51,16 +44,13 @@ public class RoutesService {
 						.path("text").asText();
 				String totalDuration = jsonNode.path("routes").path(i).path("legs").path(j).path("duration")
 						.path("text").asText();
-
 				Landmark landmarkTravelDuration = new Landmark(totalDistance, totalDuration);
 				travelDurationList.add(landmarkTravelDuration);
 			}
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-
 		return travelDurationList;
-
 	}
 	
 	// generates travel route/directions from starting location, ending location and waypoints in between
@@ -103,7 +93,6 @@ public class RoutesService {
 		
 		try {
 			jsonNode = objectMapper.readTree(response.getBody());
-
 			
 			for (int i =0; i < jsonNode.path("routes").path(0).path("legs").path(0).path("steps").size(); i++) {
 				String instruction =  jsonNode.path("routes").path(0).path("legs").path(0).path("steps").path(i).path("html_instructions").asText();
@@ -116,12 +105,6 @@ public class RoutesService {
 			e.printStackTrace();
 		}
 		
-
 		return travelRouteList;
-
 	}
-
-
-
 }
-
