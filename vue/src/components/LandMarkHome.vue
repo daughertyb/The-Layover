@@ -50,6 +50,15 @@
               <br />
               {{ option.closingTime }}
             </div>
+            <div>
+              <input
+              type="checkbox"
+              v-on:change="selectLandmark(option.name, option.images, option.venueType, option.description)"
+              v-bind:id="option.id"
+              v-bind:value="option.id"
+             
+            />
+            </div>
           </div>
         </tr>
 
@@ -66,6 +75,7 @@ export default {
       cities: [],
       cityValue: "",
       allLandmarks: [],
+      selectedLandmarks: [],
       landmarkByCity: {
       images: "",
         name: "",
@@ -74,6 +84,7 @@ export default {
         operatingDays: "",
         openingTime: "",
         closingTime: "",
+        isChecked: false
       },
 
       filter: {
@@ -83,6 +94,12 @@ export default {
         openingTime: "",
         closingTime: "",
       },
+        selectedLandmark: {
+        name: "",
+        images: "",
+        venueType: "",
+        description: "",
+      }
     };
   },
   created() {
@@ -106,10 +123,27 @@ export default {
   },
     methods: {
     venueTypeFilter: function(val) {
-      if(allVenueTypes.indexOf(val.id) === -1) {
-        arr.push(val.id);
+      if(this.allVenueTypes.indexOf(val.id) === -1) {
+        //arr.push(val.id);
         return val.id;
       }
+    },
+
+    selectLandmark: function(n, i, v, d) {
+       this.selectedLandmark.name = n;
+       this.selectedLandmark.images = i;
+       this.selectedLandmark.venueType = v;
+       this.selectedLandmark.description = d;
+
+        for (i=0; i < this.selectedLandmarks.length; i++){
+       if (this.selectedLandmark == this.selectedLandmarks[i]) {
+         console.log("am I here?");
+         this.selectedLandmarks.remove(this.selectedLandmark);
+       } else {
+         this.selectedLandmarks.push(this.selectedLandmark);
+       }
+        }
+
     }
   },
 

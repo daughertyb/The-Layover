@@ -34,12 +34,6 @@ public class LandmarkController {
 		return listOfLandmarks;
 	}
 	
-	/*
-	 * 	public List<Landmark> searchLandmarks(@RequestParam String day, @RequestParam String location,
-			@RequestParam String venueType)
-	 * */
-	
-	
 	@RequestMapping(path="/search-landmarks", method=RequestMethod.GET)
 	public List<Landmark> searchLandmarks(@RequestParam String day, @RequestParam String location,
 			@RequestParam String venueType) {

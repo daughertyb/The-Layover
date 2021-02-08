@@ -35,7 +35,7 @@ public class ItineraryController {
 	
 	@RequestMapping(path="/add-itinerary/{id}", method= RequestMethod.POST)
 	
-	public void createItinerary (@PathVariable int id, Principal principal) {  // @RequestBody Itinerary itinerary 
+	public void createItinerary (@PathVariable int id, Principal principal) {  
 		
 		long userId = userDAO.findIdByUsername(principal.getName());
 		
