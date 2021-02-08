@@ -139,36 +139,10 @@ public class LandmarkSqlDAO implements LandmarkDAO {
 		return jdbcTemplate.queryForObject("select id from landmark where name = ?", int.class, name);
 	}
 
-//	private Landmark mapRowToLandmark(SqlRowSet rs) {
-//		Landmark landmark = new Landmark();
-//        landmark.setName(rs.getString("name"));
-//        landmark.setAddress(rs.getString("address"));
-//        landmark.setVenueType(rs.getString("venuetype"));
-//        landmark.setLocation(rs.getString("location"));
-//        landmark.setOperatingDays(rs.getString("operatingdays"));
-//        landmark.setOpeningTime(rs.getString("openingtime"));
-//        landmark.setClosingTime(rs.getString("closingtime"));
-//        landmark.setDescription(rs.getString("description"));
-//        landmark.setRating(rs.getBoolean("rating"));
-//        return landmark;
-//    }
-
 	
-	public Landmark findLandmarkByOperatingDays(String operatingDays) throws RuntimeException {
-		for (Landmark landmark : this.allLandmarks()) {
-			if (landmark.getOperatingDays().toLowerCase().equals(operatingDays.toLowerCase())) {
-				return landmark;
-			}
-		}
-		throw new RuntimeException("Sorry, no landmarks are available to visit during" + operatingDays + ".");
-	}
 
 
-	@Override
-	public Landmark findLandmarkByVenueType(String venueType) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 
 

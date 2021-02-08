@@ -10,8 +10,7 @@ public interface LandmarkDAO {
 		
 	Landmark findLandmarkByName (String name);
 	
-	Landmark findLandmarkByVenueType (String venueType);
-	
+
 	int findIdByLandmarkName (String name);
 
 	List<Landmark> searchLandmarks(String day, String location, String venueType);

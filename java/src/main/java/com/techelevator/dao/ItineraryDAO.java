@@ -19,5 +19,4 @@ public interface ItineraryDAO {
 	//may need to take in a different param
 	Itinerary changeItineraryStartLocation (Landmark id);
 	
-	
 }
