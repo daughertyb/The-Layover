@@ -159,16 +159,16 @@ export default {
 
       if (this.selectedLandmarks.length == 0) {
         this.selectedLandmarks.push(this.selectedLandmark);
-        window.alert(selectedLandmark.name + "added to array");
+        // window.alert(selectedLandmark.name + "added to array");
       } else {
         for (let i = 0; i < this.selectedLandmarks.length; i++) {
-          window.alert(this.selectedLandmarks[i].name);
-          window.alert(this.selectedLandmark.name);
+          // window.alert(this.selectedLandmarks[i].name);
+          // window.alert(this.selectedLandmark.name);
           if (this.selectedLandmark.name === this.selectedLandmarks[i].name) {
-            this.selectedLandmarks.splice(this.selectedLandmark);
+            this.selectedLandmarks.push(this.selectedLandmark);
             window.alert("made it into the not equal to logic");
           } else {
-            this.selectedLandmarks.push(this.selectedLandmark);
+            this.selectedLandmarks.splice(this.selectedLandmark);
           }
         }
       }
