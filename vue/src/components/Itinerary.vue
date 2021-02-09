@@ -1,16 +1,30 @@
 <template>
   <div>
-    <h1>You Have Made It to The Promised Land</h1>
-    <title>Example</title>
-    {{$store.state.selectedLandmarks}}
+    <h1>My Itinerary</h1>
+    <tr v-for="option in $store.state.selectedLandmarks" v-bind:key="option.id">
+          <div class="results">
+            <h2>{{ option.name }}</h2>
+            </div>
 
-    <header>Header</header>
+            <div id="venueType">
+              <br />
+              {{ option.venueType }}
+            </div>
+            <br />
+            <img id="landmark-imgs" :src="option.images" />
+            <br />
+            <div id="landmark-description">
+              {{ option.description }}
+            </div>
+            </tr>
+          
+    <!-- <header>Header</header>
     <div id="main">
       <article>Article</article>
       <nav>Nav</nav>
       <aside>Aside</aside>
     </div>
-    <footer>Footer</footer>
+    <footer>Footer</footer> -->
   </div>
 </template>
 
