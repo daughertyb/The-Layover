@@ -65,7 +65,7 @@
             </div>
             <div>
               <input
-                type="checkbox"
+                type="checkbox" 
                 v-on:change="
                   selectLandmark(
                     option.name,
@@ -76,7 +76,7 @@
                 "
                 v-bind:id="option.id"
                 v-bind:value="option.id"
-              />
+              />  Add To Itinerary
             </div>
           </div>
         </tr>
@@ -216,7 +216,7 @@ export default {
 </script>
 
 
-<style>
+<style >
 @import "https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300";
 
 /* html,
@@ -312,6 +312,20 @@ div[class*="box"] {
 }
 
 /* ---------------------------------------------------------------------------------------------------------------------------- */
+
+input[type='checkbox'] {
+    -webkit-appearance:none;
+    width:30px;
+    height:30px;
+    background:white;
+    border-radius:5px;
+    border:2px solid #555;
+}
+
+input[type='checkbox']:checked {
+    background: rgb(56, 96, 224);
+}
+
 .results {
   display: grid;
   border: solid 3px;
@@ -339,6 +353,10 @@ div[class*="box"] {
 
 .mainPage {
   font-family: "Open Sans Condensed", sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
 }
 
 h2 {

@@ -1,6 +1,15 @@
 <template>
   <div>
     <h1>My Itinerary</h1>
+
+    <div>
+      <div class="directions">
+        <div class="btn btn-one" v-on:click="getDirections" router-link="/">
+          <span> Directions</span>
+        </div>
+      </div>
+    </div>
+
     <tr v-for="option in $store.state.selectedLandmarks" v-bind:key="option.id">
       <div class="results">
         <h2>{{ option.name }}</h2>
@@ -30,7 +39,7 @@
           "
           v-bind:id="option.id"
           v-bind:value="option.id"
-        >Remove From Itinerary</input>
+        />Remove From Itinerary
       </div>
     </tr>
 
@@ -67,12 +76,18 @@ export default {
 
       this.$store.commit("REMOVELANDMARK", this.selectedLandmark.name);
     },
+
+    getDirections(){
+      // drive
+      // dont stop
+      // just go
+    }
   },
 };
 </script>
 
 <style scoped>
-* {
+/* * {
   box-sizing: border-box;
 }
 body {
@@ -81,6 +96,11 @@ body {
   flex-direction: column;
   margin: 0;
 }
+
+#directions{
+font-size: 2rem;
+}
+
 #main {
   display: flex;
   flex: 1;
@@ -107,5 +127,5 @@ article,
 nav,
 aside {
   padding: 1em;
-}
+} */
 </style>

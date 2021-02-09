@@ -1,4 +1,5 @@
 <template>
+<div id="body">
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
@@ -39,6 +40,8 @@
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
     </form>
   </div>
+ <img id="headerImg" src="../assets/home.jpg" alt="logo" />
+</div>
 </template>
 
 <script>
@@ -78,3 +81,17 @@ export default {
   }
 };
 </script>
+<style scoped>
+
+#headerImg {
+  padding-left: 20px;
+ height: 900px;
+ width: 1800px;
+}
+
+form {
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+}
+
+</style>
