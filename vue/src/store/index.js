@@ -19,13 +19,15 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    selectedLandmarks: []
 
     // Andy: Add an array that captures all the selected marks.
     // If you want to refer to this array outside of this file
-    // you want to say: $store.state.landmarks.
+    // you want to say: $store.state.selectedLandmarks.
 
   },
+
   mutations: {
 
     // Andy: You need a mutator to replace what's in the landmarks array
@@ -46,6 +48,10 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    ADDSELECTEDLANDMARKS(state, selectedLandmarks) {
+      state.selectedLandmarks = [];
+      state.selectedLandmarks = selectedLandmarks;
     }
   }
 })

@@ -2,12 +2,13 @@
   <div class="mainPage">
     <div>
       <header id="title">
+
         <H1>Select a City and Venue Type to Explore</H1>
         <!-- <button class="top-Itinerary-Button">Add Items to Itinerary</button> -->
       </header>
 
       <div class="box-1">
-        <div class="btn btn-one">
+        <div class="btn btn-one" v-on:click="addToItinerary" router-link="Itinerary">
           <span>Create an Itinerary</span>
         </div>
       </div>
@@ -129,8 +130,6 @@ export default {
       .allCities()
       .then((response) => {
         this.cities = response.data;
-
-        console.log(this.cities);
       })
       .catch((error) => {
         if (error.response) {
@@ -144,6 +143,13 @@ export default {
     });
   },
   methods: {
+
+  addToItinerary() {
+
+    // pass the this.selectedLandmarks array to the mutator.
+    this.$store.commit('ADDSELECTEDLANDMARKS', this.selectedLandmarks);
+    
+  },
     venueTypeFilter: function (val) {
       if (this.allVenueTypes.indexOf(val.id) === -1) {
         //arr.push(val.id);
@@ -157,23 +163,34 @@ export default {
       this.selectedLandmark.venueType = v;
       this.selectedLandmark.description = d;
 
-      if (this.selectedLandmarks.length == 0) {
-        this.selectedLandmarks.push(this.selectedLandmark);
-        // window.alert(selectedLandmark.name + "added to array");
-      } else {
+        let found = false;
+        let indexFound = -123;
+
         for (let i = 0; i < this.selectedLandmarks.length; i++) {
-          // window.alert(this.selectedLandmarks[i].name);
-          // window.alert(this.selectedLandmark.name);
-          if (this.selectedLandmark.name === this.selectedLandmarks[i].name) {
-            this.selectedLandmarks.push(this.selectedLandmark);
-            window.alert("made it into the not equal to logic");
-          } else {
-            this.selectedLandmarks.splice(this.selectedLandmark);
+
+          if (this.selectedLandmarks[i].name === this.selectedLandmark.name) {
+            found = true;
+            indexFound = i;
           }
         }
-      }
+
+        if (found) {
+          this.selectedLandmarks.splice(indexFound, 1);
+        } else {
+
+          let newLandMark = {
+            name : this.selectedLandmark.name,
+            images : this.selectedLandmark.images,
+            venueType : this.selectedLandmark.venueType,
+            description: this.selectedLandmark.description
+          }
+
+          this.selectedLandmarks.push(newLandMark);
+        }
     },
   },
+
+
 
   computed: {
     filteredLandmarks() {
