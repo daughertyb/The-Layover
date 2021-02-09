@@ -1,16 +1,20 @@
 <template>
   <div class="mainPage">
     <div>
+      <div>
       <header id="title">
-
+            {{$store.state.selectedLandmarks}}
         <H1>Select a City and Venue Type to Explore</H1>
         <!-- <button class="top-Itinerary-Button">Add Items to Itinerary</button> -->
       </header>
 
+        <form action= "/itinerary">
       <div class="box-1">
-        <div class="btn btn-one" v-on:click="addToItinerary" router-link="Itinerary">
+        <router-link to="/itinerary" class="btn btn-one" v-on:click="addToItinerary">
           <span>Create an Itinerary</span>
+        </router-link>
         </div>
+        </form>
       </div>
 
       <section id="allCities">
