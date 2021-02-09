@@ -53,5 +53,9 @@ export default new Vuex.Store({
       state.selectedLandmarks = [];
       state.selectedLandmarks = selectedLandmarks;
     }
+    ,
+    REMOVELANDMARK(state, name) {
+      state.selectedLandmarks = state.selectedLandmarks.filter( (landmark) => landmark.name !== name );
+    }
   }
 })

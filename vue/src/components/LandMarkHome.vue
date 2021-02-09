@@ -4,8 +4,6 @@
       <div>
       <header id="title">
         <H1>Select a City and Venue Type to Explore</H1>
-        
-        <!-- <button class="top-Itinerary-Button">Add Items to Itinerary</button> -->
       </header>
 
         
@@ -19,7 +17,6 @@
       </div>
 
       <section id="allCities">
-        <!-- placeholder='Select a City' -->
         <select v-model="filter.city">
           <option :value="''" disabled selected>All Cities</option>
           <option v-for="city in cities" v-bind:key="city.id">
@@ -153,6 +150,7 @@ export default {
 
     // pass the this.selectedLandmarks array to the mutator.
     this.$store.commit('ADDSELECTEDLANDMARKS', this.selectedLandmarks);
+    this.$router.push('/itinerary');
     
   },
     venueTypeFilter: function (val) {

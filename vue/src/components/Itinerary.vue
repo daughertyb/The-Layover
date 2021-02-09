@@ -2,22 +2,38 @@
   <div>
     <h1>My Itinerary</h1>
     <tr v-for="option in $store.state.selectedLandmarks" v-bind:key="option.id">
-          <div class="results">
-            <h2>{{ option.name }}</h2>
-            </div>
+      <div class="results">
+        <h2>{{ option.name }}</h2>
+      </div>
 
-            <div id="venueType">
-              <br />
-              {{ option.venueType }}
-            </div>
-            <br />
-            <img id="landmark-imgs" :src="option.images" />
-            <br />
-            <div id="landmark-description">
-              {{ option.description }}
-            </div>
-            </tr>
-          
+      <div id="venueType">
+        <br />
+        {{ option.venueType }}
+      </div>
+      <br />
+      <img id="landmark-imgs" :src="option.images" />
+      <br />
+      <div id="landmark-description">
+        {{ option.description }}
+      </div>
+
+      <div>
+        <input
+          type="checkbox"
+          v-on:change="
+            selectLandmark(
+              option.name,
+              option.images,
+              option.venueType,
+              option.description
+            )
+          "
+          v-bind:id="option.id"
+          v-bind:value="option.id"
+        >Remove From Itinerary</input>
+      </div>
+    </tr>
+
     <!-- <header>Header</header>
     <div id="main">
       <article>Article</article>
@@ -30,7 +46,28 @@
 
 <script>
 export default {
+  data() {
+    return {
+      selectedLandmarks: [],
+      selectedLandmark: {
+        name: "",
+        images: "",
+        venueType: "",
+        description: "",
+      },
+    };
+  },
 
+  methods: {
+    selectLandmark(n, i, v, d) {
+      this.selectedLandmark.name = n;
+      this.selectedLandmark.images = i;
+      this.selectedLandmark.venueType = v;
+      this.selectedLandmark.description = d;
+
+      this.$store.commit("REMOVELANDMARK", this.selectedLandmark.name);
+    },
+  },
 };
 </script>
 
