@@ -92,8 +92,13 @@ export default {
 
 <style scoped>
 
+#venueType {
+  font-weight: 500;
+}
+
 #landmark-imgs {
   padding-bottom: 20px;
+  padding-left: 32%;
 }
 
 .results {
