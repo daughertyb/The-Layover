@@ -4,7 +4,7 @@
 
     <div>
       <div class="directions">
-        <div class="btn btn-one" v-on:click="getDirections" router-link="/">
+        <div class="btn btn-one" v-on:click="getDirections" router-link="/itinerary-directions">
           <span> Directions</span>
         </div>
       </div>
@@ -80,6 +80,8 @@ export default {
     },
 
     getDirections(){
+     // this.$store.commit('ADDSELECTEDLANDMARKS', this.selectedLandmarks);
+      this.$router.push('/itinerary-directions');
       // drive
       // dont stop
       // just go

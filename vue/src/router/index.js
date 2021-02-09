@@ -6,6 +6,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Landmarks from '../components/LandMarkHome.vue'
 import Itinerary from '../components/Itinerary.vue'
+import ItineraryRouteMapping from '../components/ItineraryRouteMapping.vue'
 
 
 
@@ -40,6 +41,16 @@ const router = new Router({
       path: '/itinerary',
       name: 'itinerary',
       component: Itinerary,
+      meta: {
+        requiresAuth: true
+      }
+
+    },
+
+    {
+      path: '/itinerary-directions',
+      name: 'itinerary-directions',
+      component: ItineraryRouteMapping,
       meta: {
         requiresAuth: true
       }

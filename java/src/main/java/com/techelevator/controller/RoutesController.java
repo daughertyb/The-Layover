@@ -22,18 +22,19 @@ import com.techelevator.service.RoutesService;
 public class RoutesController {
 	@Autowired
 	RoutesService routesService = new RoutesService();
+	Landmark landmark = new Landmark();
 
 	@RequestMapping(path="/travel-time", method=RequestMethod.GET)
 	public List<Landmark> generateTravelDuration(@RequestParam String originQuery,@RequestParam String destinationQuery) {
 		
-		return routesService.generateTravelDuration(originQuery, destinationQuery);
+		return routesService.generateTravelDuration(landmark.getStartPoint(), landmark.getEndPoint());
 		
 	}
 	
-	@RequestMapping(path="/test/directions", method=RequestMethod.GET)
+	@RequestMapping(path="/itinerary-directions", method=RequestMethod.GET)
 	public List<String> generateTravelRoute(@RequestParam String waypointStartQuery, @RequestParam String waypointEndQuery, @RequestParam String[] routeQuery) {
 				
-		return routesService.generateTravelRoute(waypointStartQuery, waypointEndQuery, routeQuery);
+		return routesService.generateTravelRoute(landmark.getStartPoint(), landmark.getEndPoint(), landmark.getRoutePoints());
 		
 	}
 	

@@ -27,6 +27,7 @@ public class Landmark {
 	private String directions;
 	private String startPoint;
 	private String endPoint;
+	private String routePoints[];
 	
 	public Landmark() {
 	}
@@ -257,6 +258,11 @@ public class Landmark {
 		endPoint = latitude + "," + longitude;
 		return endPoint;
 	}
+	
+	public String[] getRoutePoints() {
+		return routePoints;
+	}
+
 
 	public void setCoordinates(String coordinates) {
 		this.coordinates = coordinates;
