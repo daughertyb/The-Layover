@@ -21,10 +21,6 @@
       </div>
       <br />
       <img id="landmark-imgs" :src="option.images" />
-      <br />
-      <div id="landmark-description">
-        {{ option.description }}
-      </div>
 
       <div>
         <input
@@ -40,7 +36,13 @@
           v-bind:id="option.id"
           v-bind:value="option.id"
         />Remove From Itinerary
+
       </div>
+      <br />
+      <div id="landmark-description">
+        {{ option.description }}
+      </div>
+
     </tr>
 
     <!-- <header>Header</header>
@@ -87,6 +89,16 @@ export default {
 </script>
 
 <style scoped>
+
+#landmark-imgs {
+  padding-bottom: 20px;
+}
+
+.results {
+  margin-top: 30px;
+}
+
+
 /* * {
   box-sizing: border-box;
 }
