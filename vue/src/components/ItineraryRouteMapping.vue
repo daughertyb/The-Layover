@@ -5,6 +5,8 @@
           <div class="row">
             <div class="col-md-4">
                <h1> {{travelDirections}} </h1>
+                <h1> {{landmarkCoordinates.latitude}} </h1>
+                 <h1> {{landmarkCoordinates.longitude}} </h1>
             </div>
           </div>
     </div>
