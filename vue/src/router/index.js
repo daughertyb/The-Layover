@@ -7,6 +7,7 @@ import store from '../store/index'
 import Landmarks from '../components/LandMarkHome.vue'
 import Itinerary from '../components/Itinerary.vue'
 import ItineraryRouteMapping from '../components/ItineraryRouteMapping.vue'
+import ItineraryDirections from '../components/ItineraryDirections.vue'
 
 
 
@@ -31,6 +32,15 @@ const router = new Router({
       path: '/',
       name: 'allCities',
       component: Landmarks,
+      meta: {
+        requiresAuth: true
+      }
+
+    },
+    {
+      path: '/itinerary-map',
+      name: 'itinerarymap',
+      component: ItineraryDirections,
       meta: {
         requiresAuth: true
       }
