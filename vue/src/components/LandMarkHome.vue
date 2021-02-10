@@ -136,12 +136,16 @@ export default {
         operatingDays: "",
         openingTime: "",
         closingTime: "",
+        startPoint: "",
+        routeQuery: []
       },
       selectedLandmark: {
         name: "",
         images: "",
         venueType: "",
         description: "",
+        startPoint: "",
+        routeQuery: []
       },
     };
   },
@@ -174,15 +178,18 @@ export default {
     venueTypeFilter: function (val) {
       if (this.allVenueTypes.indexOf(val.id) === -1) {
         //arr.push(val.id);
+        // words added for push please delete
         return val.id;
       }
     },
 
-    selectLandmark(n, i, v, d) {
+    selectLandmark(n, i, v, d, start, route) {
       this.selectedLandmark.name = n;
       this.selectedLandmark.images = i;
       this.selectedLandmark.venueType = v;
       this.selectedLandmark.description = d;
+      this.selectedLandmark.startPoint = start;
+      this.selectedLandmark.routeQuery = route;
 
         let found = false;
         let indexFound = -123;
@@ -203,7 +210,9 @@ export default {
             name : this.selectedLandmark.name,
             images : this.selectedLandmark.images,
             venueType : this.selectedLandmark.venueType,
-            description: this.selectedLandmark.description
+            description: this.selectedLandmark.description,
+            startPoint: this.selectedLandmark.startPoint,
+            routeQuery: this.selectedLandmark.routeQuery
           }
 
           this.selectedLandmarks.push(newLandMark);
