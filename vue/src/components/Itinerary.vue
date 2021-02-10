@@ -1,37 +1,45 @@
 <template>
   <div>
     <h1>My Itinerary</h1>
-    {{selectedLandmarks}}
-     <div>
+    {{this.$store.state.selectedLandmarks}}
+    <div>
       <div class="directions">
-        <div class="btn btn-one" v-on:click="getDirections" router-link="/itinerary-directions">
+        <div
+          class="btn btn-one"
+          v-on:click="getDirections"
+          router-link="/itinerary-directions"
+        >
           <span> Directions</span>
         </div>
       </div>
     </div>
-      <section id="startPoint">
-        <select v-model="startPoint">
-          <option :value="''" disabled selected>Starting Location</option>
-          <option v-for="startPoint in $store.state.selectedLandmarks" v-bind:key="startPoint.id">
-            {{ startPoint.startPoint }}
-          </option>
-        </select>
+    <section id="startPoint">
+      <select v-model="name">
+        <option :value="''" disabled selected>Starting Location</option>
+        <option
+          v-for="option in $store.state.selectedLandmarks"
+          v-bind:key="option.id"
+          v-on:change="googleRouteBuilderStart($event)"
+        >
+          {{ option.name }}
+        </option>
+      </select>
 
-        <select v-model="waypointEndQuery">
-          <option :value="''" disabled selected>End Location</option>
-          <option v-for="waypointEndQuery in selectedLandmarks" v-bind:key="waypointEndQuery.id">
-            {{ waypointEndQuery }}
-          </option>
-        </select>
-        </section>
-
+      <select>
+        <option :value="''" disabled selected>End Location</option>
+        <option
+          v-for="option in $store.state.selectedLandmarks"
+          v-bind:key="option.id"
+        >
+          {{ option.name }}
+        </option>
+      </select>
+    </section>
 
     <tr v-for="option in $store.state.selectedLandmarks" v-bind:key="option.id">
+      <h2>{{ option.startPoint }}</h2>
 
-             <h2>{{ option.name }}</h2> 
-            <h2>{{ option.startPoint }}</h2> 
-
-            <h2>{{ option.endPoint }}</h2> 
+      <h2>{{ option.endPoint }}</h2>
 
       <div class="results">
         <h2>{{ option.name }}</h2>
@@ -43,8 +51,6 @@
       </div>
       <br />
       <img id="landmark-imgs" :src="option.images" />
-
-
 
 
       <div>
@@ -63,13 +69,11 @@
           v-bind:id="option.id"
           v-bind:value="option.id"
         />Remove From Itinerary
-
       </div>
       <br />
       <div id="landmark-description">
         {{ option.description }}
       </div>
-
     </tr>
 
     <!-- <header>Header</header>
@@ -86,46 +90,51 @@
 export default {
   data() {
     return {
-      selectedLandmarks: [],
       selectedLandmark: {
         name: "",
         images: "",
         venueType: "",
         description: "",
         startPoint: "",
-        endPoint:"",
-        routeQuery: []
+        endPoint: "",
       },
     };
   },
 
   methods: {
-    selectLandmark(n, i, v, d, start, route) {
+    selectLandmark(n, i, v, d, start, e) {
       this.selectedLandmark.name = n;
       this.selectedLandmark.images = i;
       this.selectedLandmark.venueType = v;
       this.selectedLandmark.description = d;
       this.selectedLandmark.startPoint = start;
-      this.selectedLandmark.routeQuery = route;
+      this.selectedLandmark.endPoint = e;
 
       this.$store.commit("REMOVELANDMARK", this.selectedLandmark.name);
     },
 
-    getDirections(){
-     // this.$store.commit('ADDSELECTEDLANDMARKS', this.selectedLandmarks);
-      this.$router.push('/itinerary-directions');
+    googleRouteBuilderStart(value) {
+      window.alert(value);
+      value = value.target.value;
+      for (let i=0; i < this.$store.state.selectedLandmarks.length; i++) {
+        if (this.$store.state.selectedLandmarks[i].name == value) {
+          this.$store.state.selectedLandmarks.unshift(this.$store.state.selectedLandmarks[i]);
+        }
+      }
+    },
+
+    getDirections() {
+      // this.$store.commit('ADDSELECTEDLANDMARKS', this.selectedLandmarks);
+      this.$router.push("/itinerary-directions");
       // drive
       // dont stop
       // just go
-    }
+    },
   },
-
-
 };
 </script>
 
 <style scoped>
-
 #venueType {
   font-weight: 500;
 }
@@ -138,7 +147,6 @@ export default {
 .results {
   margin-top: 30px;
 }
-
 
 /* * {
   box-sizing: border-box;
