@@ -162,6 +162,7 @@ export default {
     venueTypeFilter: function (val) {
       if (this.allVenueTypes.indexOf(val.id) === -1) {
         //arr.push(val.id);
+        // words added for push please delete
         return val.id;
       }
     },
