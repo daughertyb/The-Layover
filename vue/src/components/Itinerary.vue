@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>My Itinerary</h1>
-
-    <div>
+    {{selectedLandmarks}}
+     <div>
       <div class="directions">
         <div class="btn btn-one" v-on:click="getDirections" router-link="/itinerary-directions">
           <span> Directions</span>
@@ -12,14 +12,14 @@
       <section id="startPoint">
         <select v-model="startPoint">
           <option :value="''" disabled selected>Starting Location</option>
-          <option v-for="startPoint in allLandmarks" v-bind:key="startPoint.id">
+          <option v-for="startPoint in $store.state.selectedLandmarks" v-bind:key="startPoint.id">
             {{ startPoint.startPoint }}
           </option>
         </select>
 
         <select v-model="waypointEndQuery">
           <option :value="''" disabled selected>End Location</option>
-          <option v-for="waypointEndQuery in selectedLandmark" v-bind:key="waypointEndQuery.id">
+          <option v-for="waypointEndQuery in selectedLandmarks" v-bind:key="waypointEndQuery.id">
             {{ waypointEndQuery }}
           </option>
         </select>
@@ -27,6 +27,12 @@
 
 
     <tr v-for="option in $store.state.selectedLandmarks" v-bind:key="option.id">
+
+             <h2>{{ option.name }}</h2> 
+            <h2>{{ option.startPoint }}</h2> 
+
+            <h2>{{ option.endPoint }}</h2> 
+
       <div class="results">
         <h2>{{ option.name }}</h2>
       </div>
@@ -38,6 +44,9 @@
       <br />
       <img id="landmark-imgs" :src="option.images" />
 
+
+
+
       <div>
         <input
           type="checkbox"
@@ -46,7 +55,9 @@
               option.name,
               option.images,
               option.venueType,
-              option.description
+              option.description,
+              option.startPoint,
+              option.endPoint
             )
           "
           v-bind:id="option.id"
@@ -82,6 +93,7 @@ export default {
         venueType: "",
         description: "",
         startPoint: "",
+        endPoint:"",
         routeQuery: []
       },
     };

@@ -1,21 +1,6 @@
 <template>
   <div class="mainPage">
 
-
-
-
-
-    <div>
-      
-      <div v-for="lm in allLandmarks" v-bind:key="lm.id" > 
-
-      {{lm.startPoint}} | {{lm.endPoint}}<br>
-
-      </div>
-      
-
-
-
       <div>
 
 
@@ -106,7 +91,7 @@
      </footer>
       </table>
     </div>
-  </div>
+ 
 </template>
 
 <script>
@@ -136,16 +121,12 @@ export default {
         operatingDays: "",
         openingTime: "",
         closingTime: "",
-        startPoint: "",
-        routeQuery: []
       },
       selectedLandmark: {
         name: "",
         images: "",
         venueType: "",
         description: "",
-        startPoint: "",
-        routeQuery: []
       },
     };
   },
@@ -178,18 +159,15 @@ export default {
     venueTypeFilter: function (val) {
       if (this.allVenueTypes.indexOf(val.id) === -1) {
         //arr.push(val.id);
-        // words added for push please delete
         return val.id;
       }
     },
 
-    selectLandmark(n, i, v, d, start, route) {
+    selectLandmark(n, i, v, d) {
       this.selectedLandmark.name = n;
       this.selectedLandmark.images = i;
       this.selectedLandmark.venueType = v;
       this.selectedLandmark.description = d;
-      this.selectedLandmark.startPoint = start;
-      this.selectedLandmark.routeQuery = route;
 
         let found = false;
         let indexFound = -123;
@@ -210,9 +188,7 @@ export default {
             name : this.selectedLandmark.name,
             images : this.selectedLandmark.images,
             venueType : this.selectedLandmark.venueType,
-            description: this.selectedLandmark.description,
-            startPoint: this.selectedLandmark.startPoint,
-            routeQuery: this.selectedLandmark.routeQuery
+            description: this.selectedLandmark.description
           }
 
           this.selectedLandmarks.push(newLandMark);
