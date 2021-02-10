@@ -9,6 +9,22 @@
         </div>
       </div>
     </div>
+      <section id="startPoint">
+        <select v-model="waypointStartQuery">
+          <option :value="''" disabled selected>Starting Location</option>
+          <option v-for="waypointStartQuery in selectedLandmark" v-bind:key="waypointStartQuery.id">
+            {{ waypointStartQuery }}
+          </option>
+        </select>
+
+        <select v-model="waypointEndQuery">
+          <option :value="''" disabled selected>End Location</option>
+          <option v-for="waypointEndQuery in selectedLandmark" v-bind:key="waypointEndQuery.id">
+            {{ waypointEndQuery }}
+          </option>
+        </select>
+        </section>
+
 
     <tr v-for="option in $store.state.selectedLandmarks" v-bind:key="option.id">
       <div class="results">
@@ -65,16 +81,22 @@ export default {
         images: "",
         venueType: "",
         description: "",
+        waypointStartQuery: "",
+        waypointEndQuery: "",
+        routeQuery: []
       },
     };
   },
 
   methods: {
-    selectLandmark(n, i, v, d) {
+    selectLandmark(n, i, v, d, start, end, route) {
       this.selectedLandmark.name = n;
       this.selectedLandmark.images = i;
       this.selectedLandmark.venueType = v;
       this.selectedLandmark.description = d;
+      this.selectedLandmark.waypointStartQuery = start;
+      this.selectedLandmark.waypointEndQuery = end;
+      this.selectedLandmark.routeQuery = route;
 
       this.$store.commit("REMOVELANDMARK", this.selectedLandmark.name);
     },
@@ -87,6 +109,8 @@ export default {
       // just go
     }
   },
+
+
 };
 </script>
 
