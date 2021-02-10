@@ -28,10 +28,11 @@
   data(){
 
     return{
+        addLandmark: '&waypoints=',
         directionMode:'driving',
         origin: 'wilmington. delaware',
         destination:'newark, delaware',
-        waypoint:'bear, delaware',
+        waypoint:this.addLandmark + '',
            
         url:"https://www.google.com/maps/embed/v1/directions?key=AIzaSyB5uhVBlG2NKfe8pT0rGiTpBkOr2JJjgLg" ,
        
@@ -40,7 +41,7 @@
   },
   methods: {
     src:function(){
-     return this.url+"&origin="+this.origin+"&destination="+this.destination+"&mode="+this.directionMode+"&waypoints="+this.waypoint;
+     return this.url+"&origin="+this.origin+"&destination="+this.destination+"&mode="+this.directionMode+this.waypoint;
 
     }
   }

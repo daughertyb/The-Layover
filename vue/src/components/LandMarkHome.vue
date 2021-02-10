@@ -1,11 +1,28 @@
 <template>
   <div class="mainPage">
+
+
+
+
+
     <div>
+      
+      <div v-for="lm in allLandmarks" v-bind:key="lm.id" > 
+
+      {{lm.startPoint}} | {{lm.endPoint}}<br>
+
+      </div>
+      
+
+
+
       <div>
+
+
       <header id="title">
         <H1>Select a City and Venue Type to Explore</H1>
       </header>
-
+     
         
       <div class="box-1">
         <div class="btn btn-one">
@@ -100,6 +117,7 @@ export default {
       cities: [],
       cityValue: "",
       allLandmarks: [],
+      landmarkPosition: [],
       selectedLandmarks: [],
       landmarkByCity: {
         images: "",
