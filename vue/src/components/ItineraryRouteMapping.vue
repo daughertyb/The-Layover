@@ -18,8 +18,7 @@ export default {
     data() {
         return {
         travelDirections: {
-            origin: "",
-            destination: "",
+            startPoint: "",
             waypoints: [],
         },
         landmarkCoordinates: {
@@ -31,7 +30,7 @@ export default {
     },
     created() {
         cityAPI
-        .generateTravelRoute()
+        .getAllLandmarks()
         .then((response) => {
         this.travelDirections = response.data;
       })
