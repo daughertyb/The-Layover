@@ -5,6 +5,23 @@
         <h1>My Itinerary</h1>
         <!-- {{ this.selectedLandmark }} -->
         <br />
+    <div>
+    <h1>My Itinerary</h1>
+    <!-- {{ this.selectedLandmark }} -->
+    <br>
+          <p> Directions</p>
+     
+    </div>
+  
+      <select v-model="name" v-on:change="googleRouteBuilderStart($event)">
+        <option :value="''" disabled selected>Starting Location</option>
+        <option
+          v-for="option in $store.state.selectedLandmarks"
+          v-bind:key="option.id"
+        >
+          {{ option.name }}
+        </option>
+      </select>
 
 
         <p id="directions">Directions</p>
@@ -133,6 +150,7 @@ export default {
     googleRouteBuilder() {
       for (let i = 0; i < this.$store.state.selectLandmark.length; i++) {
         waypoints.push(this.$store.state.selectLandmark.waypoints);
+          this.waypoints.push(this.$store.state.selectLandmark.waypoints);
       }
     },
 
