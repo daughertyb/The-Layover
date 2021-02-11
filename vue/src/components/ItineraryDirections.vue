@@ -2,13 +2,13 @@
   <div id="app">
   
     <h2>Google Direction</h2>
-    
+
     <div id="map">
     
     <div id="toAndFrom">
-      <div id="inputFrom">From:<input  type="text" v-model="origin" /></div>
-      <div id="inputTo">To: <input  type="text" v-model="destination" /></div>
-      <div id="mode">Mode:<input type="text" v-model="directionMode" /></div>
+      <div id="inputFrom">From:<input v-bind:from="originLandmark()"  type="text" v-model="origin"></div>
+      <div id="inputTo">To: <input v-bind:to="destinationLandmark()"  type="text" v-model="destination"></div>
+      <div id="mode">Mode:<input type="text" v-model="directionMode"></div>
       
     </div>
 
@@ -25,13 +25,14 @@
 
 <script>
 export default {
+  props:['landmarkmap'],
   
   name: "MapDirection",
   data() {
     return {
-      directionMode: "driving",
-      origin: "newark,DE",
-      destination: "Wilmington,DE",
+      directionMode: 'driving',
+      origin: '',
+      destination: '',
 
       url:
         "https://www.google.com/maps/embed/v1/directions?key=AIzaSyB5uhVBlG2NKfe8pT0rGiTpBkOr2JJjgLg",
@@ -49,6 +50,19 @@ export default {
         this.directionMode
       );
     },
+
+    originLandmark(){
+      this.origin = this.$store.state.selectedLandmarks[0].coordinate;
+
+    },
+
+    destinationLandmark(){
+      this.destination = this.$store.state.selectedLandmarks[this.$store.state.selectedLandmarks.length -1].coordinate;
+
+    },
+
+
+
   },
 };
 </script>

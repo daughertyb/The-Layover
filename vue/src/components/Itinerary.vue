@@ -1,24 +1,9 @@
 <template>
   <div>
     <h1>My Itinerary</h1>
-<<<<<<< HEAD
  
      
     
-=======
-    {{ this.selectedLandmark }}
-    <div>
-      <div class="directions">
-        <div
-          class="btn btn-one"
-          v-on:click="getDirections"
-          router-link="/itinerary-directions"
-        >
-          <span> Directions</span>
-        </div>
-      </div>
-    </div>
->>>>>>> 763c42925274725470016b315ad062a8cc6394f0
     <section id="startPoint">
       <select v-model="name" v-on:change="googleRouteBuilderStart($event)">
         <option :value="''" disabled selected>Starting Location</option>
@@ -141,13 +126,6 @@ export default {
       console.log(landMarksArr);
     },
 
-<<<<<<< HEAD
-=======
-    googleRouteBuilder() {
-      for (let i = 0; i < this.$store.state.selectLandmark.length; i++) {
-          waypoints.push(this.$store.state.selectLandmark.waypoints);
-      }
->>>>>>> 763c42925274725470016b315ad062a8cc6394f0
     },
 
     getDirections() {
@@ -157,7 +135,7 @@ export default {
       // dont stop
       // just go
     },
-  },
+  
 };
 </script>
 <style scoped>
