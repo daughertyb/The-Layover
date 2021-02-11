@@ -1,42 +1,29 @@
 <template>
   <div class="hello">
-    <Header/>
-    <div class="container mrgnbtm">
-          <div class="row">
-            <div class="col-md-4">
-               <h1> {{travelDirections}} </h1>
-               <!-- <h1> {{landmarkCoordinates.latitude}} </h1>  -->
-                 <!-- <h1> {{landmarkCoordinates.longitude}} </h1> -->
-            </div>
-          </div>
-    </div>
-    <MapDirection v-bind="travelDirections.waypoints"></MapDirection>
+    <h1>{{ travelDirections }}</h1>
   </div>
 </template>
 <script>
 import cityAPI from "@/services/APIServices.js";
-import MapDirection from "./ItineraryDirections.vue"
 export default {
-  components: {
-    MapDirection
+  name: "RouteMapping",
+  data() {
+    return {
+      travelDirections: {
+        startPoint: "",
+        endPoint: "",
+        waypoints: "",
+      },
+    };
   },
-    data() {
-        return {
-        travelDirections: {
-            startPoint: "",
-            waypoints: [],
-        },
-        landmarkCoordinates: {
-            latitude: "",
-            longitude: "",
-        },
-    
-        };
-    },
-    created() {
-        cityAPI
-        .generateTravelRoute()
-        .then((response) => {
+  created() {
+    cityAPI
+      .generateTravelRoute(
+        this.$route.params.originQuery,
+        this.$route.params.destinationQuery,
+        this.$route.params.routeQuery
+      )
+      .then((response) => {
         this.travelDirections = response.data;
       })
       .catch((error) => {
@@ -45,13 +32,9 @@ export default {
         }
       });
 
-      cityAPI.getAllLandmarks().then((response) => {
-      this.landmarkCoordinates = response.data;
-    });
-    },
-    methods() {
-
-    }
-    
-}
+    //   cityAPI.getAllLandmarks().then((response) => {
+    //   this.landmarkCoordinates = response.data;
+    // });
+  },
+};
 </script>

@@ -135,14 +135,7 @@ export default {
 
       console.log(landMarksArr);
     },
-
-    googleRouteBuilder() {
-      for (let i = 0; i < this.$store.state.selectLandmark.length; i++) {
-        waypoints.push(this.$store.state.selectLandmark.waypoints);
-          this.waypoints.push(this.$store.state.selectLandmark.waypoints);
-      }
-    },
-
+    
     getDirections() {
       // this.$store.commit('ADDSELECTEDLANDMARKS', this.selectedLandmarks);
       this.$router.push("/itinerary-directions");
