@@ -41,15 +41,12 @@
         <tr v-for="option in filteredLandmarks" v-bind:key="option.id">
           <div class="results">
             <h2>{{ option.cityValue }}</h2>
-
-            <h2>{{ option.name }}</h2>
-
-            <div id="landmark-description">
-              <br />
-              {{ option.description }}
-            </div>
             <br />
             <img id="landmark-imgs" :src="option.images" />
+            <h2>{{ option.name }}
+            <h3 id="description">{{ option.description }}</h3>
+            </h2>
+
             <br />
             <div id="venueType">
               {{ option.venueType }}
@@ -321,102 +318,88 @@ div[class*="box"] {
 
 /* ---------------------------------------------------------------------------------------------------------------------------- */
 
-input[type='checkbox'] {
-    -webkit-appearance:none;
-    width:30px;
-    height:30px;
-    background:white;
-    border-radius:5px;
-    border:2px solid #555;
+
+#main {
+  font-family: "Open Sans Condensed", sans-serif;
+  background-color: rgba(82, 95, 138, 0.376);
 }
 
-input[type='checkbox']:checked {
-    background: rgb(56, 96, 224);
-}
+/* html {
+    background-color: rgba(82, 95, 138, 0.376);
+} */
 
-.results {
-  display: grid;
-  border: solid 3px;
-  padding: 50px;
-}
-
-
-#landmark-imgs {
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  height: 450px;
-  width: auto;
-  margin: auto 0;
-  grid-row: 6;
-}
-
-#landmark-description {
-  font-size: 30px;
-  border: solid 2px;
-  padding-left: 20px;
-  padding-bottom: 20px;
+#venueType {
   font-weight: 500;
 }
 
-.mainPage {
-  font-family: "Open Sans Condensed", sans-serif;
+#description {
+  font-weight: 500;
 }
 
-h1 {
-  font-size: 2rem;
+#directions {
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding-right: 10px;
 }
 
-h2 {
+#directions-drop{
+  font-size: 1.3rem;
+  background-color: rgba(94, 94, 179, 0.513);
+}
+
+#landmark-imgs {
+  padding-bottom: 20px;
+  height: 200px;
+  width: 200px;
+  border-radius: 20%;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+p {
+  display: inline;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid #555;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+input[type="checkbox"]:checked {
+  background: rgb(56, 96, 224);
+}
+
+tr {
   display: flex;
-  justify-content: center;
-  font-size: 2rem;
-}
-
-div > header {
-  display: flex;
-  justify-content: space-around;
-}
-
-#allCities {
-  display: flex;
-  justify-content: center;
-}
-
-#venueType {
-  display: flex;
-  justify-content: center;
-  font-size: 30px;
-}
-
-#operatingDays {
-  display: flex;
-  justify-content: center;
-  font-size: 30px;
-}
-
-#openingTime-closingTime {
-  display: flex;
-  justify-content: center;
-  font-size: 30px;
-}
-
-html {
-  background-color: rgba(89, 106, 116, 0.411);
+  justify-content: space-evenly;
+  border: 3px solid black;
+  border-radius: 10px;
+  margin-top: 30px;
+    background-color: rgba(192, 144, 11, 0.657);
 }
 
 .results {
-  background-color: rgba(69, 107, 138, 0.424);
+  margin-top: 30px;
 }
 
-#go-back-btn {
-  font-size: 20px;
-  padding-bottom: 20px;
+.mapDirection {
+  display: flex;
+  justify-content: center;
+  border-radius: 15%;
 }
 
-select {
-  font-size: 20px;
-  background-color: rgba(123, 112, 230, 0.479);
-  margin-top: 10px;
+table {
+  display: grid;
 }
+
+
+
+
 </style>
