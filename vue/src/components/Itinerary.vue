@@ -3,12 +3,19 @@
     <header>
     <div>
     <h1>My Itinerary</h1>
+<<<<<<< HEAD
     <!-- {{ this.selectedLandmark }} -->
     <br>
           <p> Directions</p>
      
   
   
+=======
+ 
+     
+    
+    <section id="startPoint">
+>>>>>>> 8e0e04faa2beb41b4bd09833e787b86dfdd43b0c
       <select v-model="name" v-on:change="googleRouteBuilderStart($event)">
         <option :value="''" disabled selected>Starting Location</option>
         <option
@@ -132,10 +139,13 @@ export default {
       console.log(landMarksArr);
     },
 
+<<<<<<< HEAD
     googleRouteBuilder() {
       for (let i = 0; i < this.$store.state.selectLandmark.length; i++) {
           waypoints.push(this.$store.state.selectLandmark.waypoints);
       }
+=======
+>>>>>>> 8e0e04faa2beb41b4bd09833e787b86dfdd43b0c
     },
 
     getDirections() {
@@ -145,7 +155,7 @@ export default {
       // dont stop
       // just go
     },
-  },
+  
 };
 </script>
 <style scoped>
