@@ -90,14 +90,16 @@
       </div>
      </footer>
       </table>
+     
     </div>
  
 </template>
 
 <script>
 import cityAPI from "@/services/APIServices.js";
+
 export default {
-  data() {
+   data() {
     return {
       cities: [],
       cityValue: "",

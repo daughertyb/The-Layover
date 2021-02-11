@@ -1,20 +1,25 @@
 <template>
   <div class="hello">
-    <Header />
+    <Header/>
     <div class="container mrgnbtm">
           <div class="row">
             <div class="col-md-4">
                <h1> {{travelDirections}} </h1>
-                <h1> {{landmarkCoordinates.latitude}} </h1>
-                 <h1> {{landmarkCoordinates.longitude}} </h1>
+               <!-- <h1> {{landmarkCoordinates.latitude}} </h1>  -->
+                 <!-- <h1> {{landmarkCoordinates.longitude}} </h1> -->
             </div>
           </div>
     </div>
+    <MapDirection v-bind="travelDirections.waypoints"></MapDirection>
   </div>
 </template>
 <script>
 import cityAPI from "@/services/APIServices.js";
+import MapDirection from "./ItineraryDirections.vue"
 export default {
+  components: {
+    MapDirection
+  },
     data() {
         return {
         travelDirections: {
@@ -30,7 +35,7 @@ export default {
     },
     created() {
         cityAPI
-        .getAllLandmarks()
+        .generateTravelRoute()
         .then((response) => {
         this.travelDirections = response.data;
       })

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>My Itinerary</h1>
-    {{this.$store.state.selectedLandmarks}}
+    {{this.selectedLandmark}}
     <div>
       <div class="directions">
         <div
@@ -74,6 +74,7 @@
         {{ option.description }}
       </div>
     </tr>
+    <MapDirection ></MapDirection>
 
     <!-- <header>Header</header>
     <div id="main">
@@ -86,7 +87,11 @@
 </template>
 
 <script>
+import MapDirection from "./ItineraryDirections.vue"
 export default {
+   components: {
+    MapDirection
+  },
   data() {
     return {
       selectedLandmark: {
