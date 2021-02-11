@@ -73,7 +73,8 @@
                     option.images,
                     option.venueType,
                     option.description,
-                    option.startPoint
+                    option.startPoint,
+                    
                   )
                 "
                 v-bind:id="option.id"
