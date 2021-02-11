@@ -1,74 +1,67 @@
 <template>
-  <div>
+  <div id="main">
     <header>
-    <div>
-    <h1>My Itinerary</h1>
-<<<<<<< HEAD
-    <!-- {{ this.selectedLandmark }} -->
-    <br>
-          <p> Directions</p>
-     
-  
-  
-=======
- 
-     
-    
-    <section id="startPoint">
->>>>>>> 8e0e04faa2beb41b4bd09833e787b86dfdd43b0c
-      <select v-model="name" v-on:change="googleRouteBuilderStart($event)">
-        <option :value="''" disabled selected>Starting Location</option>
-        <option
-          v-for="option in $store.state.selectedLandmarks"
-          v-bind:key="option.id"
-        >
-          {{ option.name }}
-        </option>
-      </select>
-
-   
-    </div>
-    </header>
-  
-
-<table>
-    <tr v-for="option in $store.state.selectedLandmarks" v-bind:key="option.id">
-      <h2>{{ option.startPoint }}</h2>
-
-      <h2>{{ option.endPoint }}</h2>
-  
-        <h2>{{ option.name }}</h2>
-    
-   
-
-<br>
-      <img id="landmark-imgs" :src="option.images" /><p>{{option.description}}</p>
-
       <div>
-        <input
-          type="checkbox"
-          v-on:change="
-            selectLandmark(
-              option.name,
-              option.images,
-              option.venueType,
-              option.description,
-              option.startPoint,
-              option.endPoint,
-              option.waypoints
-            )
-          "
-          v-bind:id="option.id"
-          v-bind:value="option.id"
-        />Remove From Itinerary
+        <h1>My Itinerary</h1>
+        <!-- {{ this.selectedLandmark }} -->
+        <br />
+
+
+        <p id="directions">Directions</p>
+        <select id="directions-drop" v-model="name" v-on:change="googleRouteBuilderStart($event)">
+          <option :value="''" disabled selected>Starting Location</option>
+          <option
+            v-for="option in $store.state.selectedLandmarks"
+            v-bind:key="option.id"
+          >
+            {{ option.name }}
+          </option>
+        </select>
+
       </div>
-      <br />
-     
-    </tr>
-</table>
-<div  class="mapDirection">
-    <MapDirection></MapDirection>
-</div>
+    </header>
+
+    <table>
+      <tr
+        v-for="option in $store.state.selectedLandmarks"
+        v-bind:key="option.id"
+      >
+        <h2>{{ option.startPoint }}</h2>
+
+        <h2>{{ option.endPoint }}</h2>
+
+        <img id="landmark-imgs" :src="option.images" />
+
+        <h2>
+          {{ option.name }}
+          <h3 id="description">{{ option.description }}</h3>
+        </h2>
+        <br />
+
+        <div>
+          <input
+            type="checkbox"
+            v-on:change="
+              selectLandmark(
+                option.name,
+                option.images,
+                option.venueType,
+                option.description,
+                option.startPoint,
+                option.endPoint,
+                option.waypoints
+              )
+            "
+            v-bind:id="option.id"
+            v-bind:value="option.id"
+          />Remove
+        </div>
+        <br />
+      </tr>
+    </table>
+    <div class="mapDirection">
+      <MapDirection></MapDirection>
+    </div>
     <!-- <header>Header</header>
     <div id="main">
       <article>Article</article>
@@ -76,8 +69,6 @@
       <aside>Aside</aside>
     </div>
     <footer>Footer</footer> -->
-
-
   </div>
 </template>
 
@@ -139,13 +130,10 @@ export default {
       console.log(landMarksArr);
     },
 
-<<<<<<< HEAD
     googleRouteBuilder() {
       for (let i = 0; i < this.$store.state.selectLandmark.length; i++) {
-          waypoints.push(this.$store.state.selectLandmark.waypoints);
+        waypoints.push(this.$store.state.selectLandmark.waypoints);
       }
-=======
->>>>>>> 8e0e04faa2beb41b4bd09833e787b86dfdd43b0c
     },
 
     getDirections() {
@@ -155,12 +143,36 @@ export default {
       // dont stop
       // just go
     },
-  
+  },
 };
 </script>
 <style scoped>
+#main {
+  font-family: "Open Sans Condensed", sans-serif;
+  background-color: rgba(82, 95, 138, 0.376);
+}
+
+/* html {
+    background-color: rgba(82, 95, 138, 0.376);
+} */
+
 #venueType {
   font-weight: 500;
+}
+
+#description {
+  font-weight: 500;
+}
+
+#directions {
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding-right: 10px;
+}
+
+#directions-drop{
+  font-size: 1.3rem;
+  background-color: rgba(94, 94, 179, 0.513);
 }
 
 #landmark-imgs {
@@ -168,15 +180,37 @@ export default {
   height: 200px;
   width: 200px;
   border-radius: 20%;
-
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 p {
-   display:flex;
+  display: inline;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid #555;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+input[type="checkbox"]:checked {
+  background: rgb(56, 96, 224);
 }
 
 tr {
   display: flex;
+  justify-content: space-evenly;
+  border: 3px solid black;
+  border-radius: 10px;
+  margin-top: 30px;
+    background-color: rgba(192, 144, 11, 0.657);
 }
 
 .results {
@@ -190,7 +224,7 @@ tr {
 }
 
 table {
-display: flex;
+  display: grid;
 }
 
 /* * {
