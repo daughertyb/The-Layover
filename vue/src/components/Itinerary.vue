@@ -14,12 +14,11 @@
       </div>
     </div>
     <section id="startPoint">
-      <select v-model="name">
+      <select v-model="name" v-on:change="googleRouteBuilderStart($event)">
         <option :value="''" disabled selected>Starting Location</option>
         <option
           v-for="option in $store.state.selectedLandmarks"
-          v-bind:key="option.id"
-          v-on:change="googleRouteBuilderStart($event)"
+          v-bind:key="option.id"      
         >
           {{ option.name }}
         </option>
@@ -113,14 +112,38 @@ export default {
       this.$store.commit("REMOVELANDMARK", this.selectedLandmark.name);
     },
 
-    googleRouteBuilderStart(value) {
-      window.alert(value);
-      value = value.target.value;
+    googleRouteBuilderStart(event) {
+      let firstDestination = event.target.value;
+
+      // make a copy of the store.state.selectedLandmarks array
+      let landMarksArr = [];
       for (let i=0; i < this.$store.state.selectedLandmarks.length; i++) {
-        if (this.$store.state.selectedLandmarks[i].name == value) {
-          this.$store.state.selectedLandmarks.unshift(this.$store.state.selectedLandmarks[i]);
-        }
+        landMarksArr.push(this.$store.state.selectedLandmarks[i]);
       }
+
+      let firstDestinationObj = {};
+      let firstDestinationObjIndex = -123;
+
+      for (let i=0; i < landMarksArr.length; i++) {
+
+        if (landMarksArr[i].name === firstDestination) {
+          firstDestinationObj = landMarksArr[i];
+          firstDestinationObjIndex = i;
+        }
+      } 
+
+      landMarksArr.splice(firstDestinationObjIndex, 1);
+      landMarksArr.unshift(firstDestinationObj);
+
+      console.log(landMarksArr);
+
+
+
+      // for (let i=0; i < this.$store.state.selectedLandmarks.length; i++) {
+      //   if (this.$store.state.selectedLandmarks[i].name == value) {
+      //     this.$store.state.selectedLandmarks.unshift(this.$store.state.selectedLandmarks[i]);
+      //   }
+      // }
     },
 
     getDirections() {

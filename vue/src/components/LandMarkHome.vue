@@ -2,8 +2,7 @@
   <div class="mainPage">
 
       <div>
-
-
+  
       <header id="title">
         <H1>Select a City and Venue Type to Explore</H1>
       </header>
@@ -73,7 +72,8 @@
                     option.name,
                     option.images,
                     option.venueType,
-                    option.description
+                    option.description,
+                    option.startPoint
                   )
                 "
                 v-bind:id="option.id"
@@ -163,11 +163,12 @@ export default {
       }
     },
 
-    selectLandmark(n, i, v, d) {
+    selectLandmark(n, i, v, d, c) {
       this.selectedLandmark.name = n;
       this.selectedLandmark.images = i;
       this.selectedLandmark.venueType = v;
       this.selectedLandmark.description = d;
+      this.selectedLandmark.coordinates = c;
 
         let found = false;
         let indexFound = -123;
@@ -188,7 +189,8 @@ export default {
             name : this.selectedLandmark.name,
             images : this.selectedLandmark.images,
             venueType : this.selectedLandmark.venueType,
-            description: this.selectedLandmark.description
+            description: this.selectedLandmark.description,
+            coordinate: this.selectedLandmark.coordinates
           }
 
           this.selectedLandmarks.push(newLandMark);
