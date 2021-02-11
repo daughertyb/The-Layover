@@ -223,7 +223,7 @@ export default {
 </script>
 
 
-<style >
+<style scoped>
 @import "https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300";
 
 /* html,

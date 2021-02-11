@@ -1,18 +1,9 @@
 <template>
   <div>
     <h1>My Itinerary</h1>
-    {{this.selectedLandmark}}
-    <div>
-      <div class="directions">
-        <div
-          class="btn btn-one"
-          v-on:click="getDirections"
-          router-link="/itinerary-directions"
-        >
-          <span> Directions</span>
-        </div>
-      </div>
-    </div>
+ 
+     
+    
     <section id="startPoint">
       <select v-model="name" v-on:change="googleRouteBuilderStart($event)">
         <option :value="''" disabled selected>Starting Location</option>
@@ -24,15 +15,7 @@
         </option>
       </select>
 
-      <select>
-        <option :value="''" disabled selected>End Location</option>
-        <option
-          v-for="option in $store.state.selectedLandmarks"
-          v-bind:key="option.id"
-        >
-          {{ option.name }}
-        </option>
-      </select>
+      
     </section>
 
     <tr v-for="option in $store.state.selectedLandmarks" v-bind:key="option.id">
@@ -49,7 +32,8 @@
         {{ option.venueType }}
       </div>
       <br />
-      <img id="landmark-imgs" :src="option.images" />
+
+      <img id="landmark-imgs" :src="option.images" /><p>{{option.description}}</p>
 
 
       <div>
@@ -70,9 +54,7 @@
         />Remove From Itinerary
       </div>
       <br />
-      <div id="landmark-description">
-        {{ option.description }}
-      </div>
+     
     </tr>
     <MapDirection ></MapDirection>
 
@@ -142,13 +124,6 @@ export default {
 
       console.log(landMarksArr);
 
-
-
-      // for (let i=0; i < this.$store.state.selectedLandmarks.length; i++) {
-      //   if (this.$store.state.selectedLandmarks[i].name == value) {
-      //     this.$store.state.selectedLandmarks.unshift(this.$store.state.selectedLandmarks[i]);
-      //   }
-      // }
     },
 
     getDirections() {
@@ -169,7 +144,11 @@ export default {
 
 #landmark-imgs {
   padding-bottom: 20px;
-  padding-left: 32%;
+
+}
+
+p {
+   display:inline;
 }
 
 .results {
