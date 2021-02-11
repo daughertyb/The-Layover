@@ -2,6 +2,7 @@
 <div id="body">
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
+      <h1>City Tour </h1>
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
         class="alert alert-danger"
@@ -44,6 +45,15 @@
 </div>
 </template>
 
+
+
+
+
+
+
+
+
+
 <script>
 import authService from "../services/AuthService";
 
@@ -84,14 +94,26 @@ export default {
 <style scoped>
 
 #headerImg {
-  padding-left: 20px;
- height: 900px;
- width: 1800px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  height: 500px;
+  width: 500px;
+  padding-bottom: 40px;
+  border-radius: 15%;
+ 
 }
 
 form {
+  display: block;
   font-size: 1.5rem;
   padding-bottom: 10px;
+  padding-left: 40%;
+}
+
+
+#body {
+ background-color: rgba(59, 68, 100, 0.616);
 }
 
 </style>

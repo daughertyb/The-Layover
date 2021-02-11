@@ -17,15 +17,15 @@
        </div>
       </div>
 
-      <section id="allCities">
-        <select v-model="filter.city">
+      <section >
+        <select id="all-Cities" v-model="filter.city">
           <option :value="''" disabled selected>All Cities</option>
           <option v-for="city in cities" v-bind:key="city.id">
             {{ city }}
           </option>
         </select>
 
-        <select v-model="filter.venueType">
+        <select id="all-Venues" v-model="filter.venueType">
           <option :value="''" disabled selected>All Venues</option>
           <option
             v-for="venueType in filteredLandmarks"
@@ -41,16 +41,14 @@
         <tr v-for="option in filteredLandmarks" v-bind:key="option.id">
           <div class="results">
             <h2>{{ option.cityValue }}</h2>
-
-            <h2>{{ option.name }}</h2>
-
-            <div id="landmark-description">
-              <br />
-              {{ option.description }}
-            </div>
-            <br />
+          <div id="card-img">
             <img id="landmark-imgs" :src="option.images" />
-            <br />
+            <h2>{{ option.name }}
+            <h3 id="description">{{ option.description }}</h3>
+            </h2>
+          </div>
+          
+          <section id="venue-days-time">
             <div id="venueType">
               {{ option.venueType }}
             </div>
@@ -64,6 +62,7 @@
               <br />
               {{ option.closingTime }}
             </div>
+          </section>
             <div>
               <input
                 type="checkbox" 
@@ -81,6 +80,7 @@
                 v-bind:value="option.id"
               />  Add To Itinerary
             </div>
+              <br>
           </div>
         </tr>
         <footer>
@@ -247,6 +247,15 @@ div[class*="box"] {
   align-items: right;
 }
 
+#card-img {
+  display: flex;
+  justify-content: space-between;
+}
+
+#venue-days-time {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
 
 /* Top one makes whole color of button */
 /* .box-1 {
@@ -263,15 +272,20 @@ div[class*="box"] {
   
 }
 
+tr {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
 .btn-one {
   /* Button text color */
   background-color: #4063a581;
   color: rgb(0, 0, 0);  
   transition: all 0.3s;
   position: relative;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  border-radius: 25px;
+  /* border-radius: 25px; */
   
 }
 .btn-one span {
@@ -321,102 +335,103 @@ div[class*="box"] {
 
 /* ---------------------------------------------------------------------------------------------------------------------------- */
 
-input[type='checkbox'] {
-    -webkit-appearance:none;
-    width:30px;
-    height:30px;
-    background:white;
-    border-radius:5px;
-    border:2px solid #555;
-}
-
-input[type='checkbox']:checked {
-    background: rgb(56, 96, 224);
-}
-
-.results {
-  display: grid;
-  border: solid 3px;
-  padding: 50px;
-}
-
-
-#landmark-imgs {
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  height: 450px;
-  width: auto;
-  margin: auto 0;
-  grid-row: 6;
-}
-
-#landmark-description {
-  font-size: 30px;
-  border: solid 2px;
-  padding-left: 20px;
-  padding-bottom: 20px;
-  font-weight: 500;
+h1 {
+  font-size: 1.7rem;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .mainPage {
-  font-family: "Open Sans Condensed", sans-serif;
-}
-
-h1 {
-  font-size: 2rem;
-}
-
-h2 {
-  display: flex;
-  justify-content: center;
-  font-size: 2rem;
-}
-
-div > header {
-  display: flex;
-  justify-content: space-around;
-}
-
-#allCities {
-  display: flex;
-  justify-content: center;
+    background-color: rgba(59, 68, 100, 0.616);
 }
 
 #venueType {
-  display: flex;
-  justify-content: center;
-  font-size: 30px;
+  font-weight: 500;
+  
 }
 
-#operatingDays {
-  display: flex;
-  justify-content: center;
-  font-size: 30px;
+h2 {
+ 
 }
 
-#openingTime-closingTime {
-  display: flex;
-  justify-content: center;
-  font-size: 30px;
+#description {
+  font-weight: 500;
 }
 
-html {
-  background-color: rgba(89, 106, 116, 0.411);
+#directions {
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding-right: 10px;
+}
+
+#all-Cities {
+  font-size: 1.3rem;
+  background-color: rgba(200, 199, 196, 0.452);
+  margin-left: 42%;
+}
+
+#all-Venues {
+    font-size: 1.3rem;
+    background-color: rgba(200, 199, 196, 0.452);
+    margin-left: 15px;
+    margin-top: 20px;
+}
+
+#landmark-imgs {
+  padding-bottom: 20px;
+  height: 200px;
+  width: 200px;
+  border-radius: 20%;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* border: 3px solid black; */
+}
+
+p {
+  display: inline;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid #555;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+input[type="checkbox"]:checked {
+  background: rgb(56, 96, 224);
+}
+
+tr {
+  display: flex;
+  justify-content: space-evenly;
+  border: 3px solid black;
+  border-radius: 10px;
+  margin-top: 30px;
+    background-color: rgba(192, 144, 11, 0.657);
 }
 
 .results {
-  background-color: rgba(69, 107, 138, 0.424);
+  margin-top: 30px;
+  padding-left: 20px;
 }
 
-#go-back-btn {
-  font-size: 20px;
-  padding-bottom: 20px;
+.mapDirection {
+  display: flex;
+  justify-content: center;
+  border-radius: 15%;
 }
 
-select {
-  font-size: 20px;
-  background-color: rgba(123, 112, 230, 0.479);
-  margin-top: 10px;
+table {
+  display: grid;
 }
+
+
 </style>
