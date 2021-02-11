@@ -1,25 +1,14 @@
 <template>
   <div>
-    <h1>My Itinerary</h1>
-<<<<<<< HEAD
- 
-     
-    
-=======
-    {{ this.selectedLandmark }}
+    <header>
     <div>
-      <div class="directions">
-        <div
-          class="btn btn-one"
-          v-on:click="getDirections"
-          router-link="/itinerary-directions"
-        >
-          <span> Directions</span>
-        </div>
-      </div>
-    </div>
->>>>>>> 763c42925274725470016b315ad062a8cc6394f0
-    <section id="startPoint">
+    <h1>My Itinerary</h1>
+    <!-- {{ this.selectedLandmark }} -->
+    <br>
+          <p> Directions</p>
+     
+  
+  
       <select v-model="name" v-on:change="googleRouteBuilderStart($event)">
         <option :value="''" disabled selected>Starting Location</option>
         <option
@@ -30,24 +19,22 @@
         </option>
       </select>
 
-      
-    </section>
+   
+    </div>
+    </header>
+  
 
+<table>
     <tr v-for="option in $store.state.selectedLandmarks" v-bind:key="option.id">
       <h2>{{ option.startPoint }}</h2>
 
       <h2>{{ option.endPoint }}</h2>
-
-      <div class="results">
+  
         <h2>{{ option.name }}</h2>
-      </div>
+    
+   
 
-      <div id="venueType">
-        <br />
-        {{ option.venueType }}
-      </div>
-      <br />
-
+<br>
       <img id="landmark-imgs" :src="option.images" /><p>{{option.description}}</p>
 
       <div>
@@ -71,8 +58,10 @@
       <br />
      
     </tr>
-    <MapDirection class="mapDirection"></MapDirection>
-
+</table>
+<div  class="mapDirection">
+    <MapDirection></MapDirection>
+</div>
     <!-- <header>Header</header>
     <div id="main">
       <article>Article</article>
@@ -80,6 +69,8 @@
       <aside>Aside</aside>
     </div>
     <footer>Footer</footer> -->
+
+
   </div>
 </template>
 
@@ -141,13 +132,10 @@ export default {
       console.log(landMarksArr);
     },
 
-<<<<<<< HEAD
-=======
     googleRouteBuilder() {
       for (let i = 0; i < this.$store.state.selectLandmark.length; i++) {
           waypoints.push(this.$store.state.selectLandmark.waypoints);
       }
->>>>>>> 763c42925274725470016b315ad062a8cc6394f0
     },
 
     getDirections() {
@@ -167,15 +155,32 @@ export default {
 
 #landmark-imgs {
   padding-bottom: 20px;
+  height: 200px;
+  width: 200px;
+  border-radius: 20%;
 
 }
 
 p {
-   display:inline;
+   display:flex;
+}
+
+tr {
+  display: flex;
 }
 
 .results {
   margin-top: 30px;
+}
+
+.mapDirection {
+  display: flex;
+  justify-content: center;
+  border-radius: 15%;
+}
+
+table {
+display: flex;
 }
 
 /* * {
