@@ -19,8 +19,9 @@ const http = axios.create({
         return http.get('/get-all-landmarks')
       },
 
-      generateTravelRoute(originQuery, destinationQuery, routeQuery) {
-        return http.get(`/itinerary-directions/${originQuery},${destinationQuery},${routeQuery}`)
+      generateTravelRoute(requestData) {
+        return http.get(`/itinerary-directions/${requestData}`)
       }
+    
     
   }

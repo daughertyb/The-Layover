@@ -14,7 +14,7 @@
 
 
         <p id="directions">Directions</p>
-        <select id="directions-drop" v-model="name" v-on:change="googleRouteBuilderStart($event)">
+        <select id="directions-drop" v-model="selectedLandmark.name" v-on:change="googleRouteBuilderStart($event)">
           <option :value="''" disabled selected>Starting Location</option>
           <option
             v-for="option in $store.state.selectedLandmarks"
@@ -24,6 +24,8 @@
           </option>
         </select>
 
+
+          <button v-on:click='generateSteps'>Generate Route</button>
       </div>
     </header>
 
@@ -65,8 +67,9 @@
         <br />
       </tr>
     </table>
-    <div class="mapDirection">
-      <MapDirection></MapDirection>
+    <div id='direction' class="mapDirection">
+      <!-- <step-by-step></step-by-step> -->
+      <MapDirection></MapDirection> 
     </div>
     <!-- <header>Header</header>
     <div id="main">
@@ -80,9 +83,10 @@
 
 <script>
 import MapDirection from "./ItineraryDirections.vue";
+import cityAPI from "@/services/APIServices.js";
 export default {
   components: {
-    MapDirection,
+    MapDirection
   },
   data() {
     return {
@@ -100,6 +104,48 @@ export default {
   },
 
   methods: {
+    generateSteps() {
+
+      console.log('WAYPOINTS: ' + this.waypoints);
+
+/*
+
+http://localhost:8080/itinerary-directions?
+waypointStartQuery=42.341048,-83.055163
+&waypointEndQuery=42.338998,-83.048520
+&routeQuery=39.9580,-75.1724&routeQuery=40.1538,-83.1177
+&routeQuery=39.965869,-82.952827
+*/
+
+
+      // the first:
+      console.log(this.waypoints[0].coordinate);
+
+      // the last: 
+      console.log(this.waypoints[this.waypoints.length-1].coordinate);
+
+      let routeQueryString = '';
+      // in between:
+      for (let i=0; i < this.waypoints.length; i++) {
+        routeQueryString = routeQueryString + '&routeQuery=' + this.waypoints[i].coordinate;
+      }
+ 
+
+      const dataStuff = '?waypointStartQuery=' + this.waypoints[0].coordinate + '&waypointEndQuery=' + this.waypoints[this.waypoints.length-1].coordinate +routeQueryString;
+      cityAPI.generateTravelRoute(dataStuff).then(
+        (response) => {
+          const parentElement = document.getElementById('direction');
+          for (let i=0; i < response.data.length; i++) {
+            const newElement = document.createElement('div');
+            newElement.innerHTML = response.data[i];
+            parentElement.appendChild(newElement);
+          }
+        
+        
+        }
+ 
+      )
+    },
     selectLandmark(n, i, v, d, start, e, w) {
       this.selectedLandmark.name = n;
       this.selectedLandmark.images = i;
@@ -134,8 +180,10 @@ export default {
       landMarksArr.unshift(firstDestinationObj);
 
       console.log(landMarksArr);
+
+      this.waypoints = landMarksArr;
     },
-    
+
     getDirections() {
       // this.$store.commit('ADDSELECTEDLANDMARKS', this.selectedLandmarks);
       this.$router.push("/itinerary-directions");
@@ -149,16 +197,12 @@ export default {
 <style scoped>
 #main {
   font-family: "Open Sans Condensed", sans-serif;
-  background-color: rgba(59, 68, 100, 0.616);
+  background-color: rgba(82, 95, 138, 0.376);
 }
 
 /* html {
     background-color: rgba(82, 95, 138, 0.376);
 } */
-
-h1 {
-  padding-left: 15px;
-}
 
 #venueType {
   font-weight: 500;
@@ -172,13 +216,11 @@ h1 {
   font-weight: 600;
   font-size: 1.5rem;
   padding-right: 10px;
-  padding-left: 20px;
 }
 
 #directions-drop{
   font-size: 1.3rem;
-  background-color: rgba(200, 199, 196, 0.452);
-  margin-left: 10px
+  background-color: rgba(94, 94, 179, 0.513);
 }
 
 #landmark-imgs {
@@ -217,8 +259,6 @@ tr {
   border-radius: 10px;
   margin-top: 30px;
     background-color: rgba(192, 144, 11, 0.657);
-    margin-left: 15px;
-    margin-right: 15px;
 }
 
 .results {
