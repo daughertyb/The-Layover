@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>My Itinerary</h1>
-    {{this.selectedLandmark}}
+    {{ this.selectedLandmark }}
     <div>
       <div class="directions">
         <div
@@ -18,7 +18,7 @@
         <option :value="''" disabled selected>Starting Location</option>
         <option
           v-for="option in $store.state.selectedLandmarks"
-          v-bind:key="option.id"      
+          v-bind:key="option.id"
         >
           {{ option.name }}
         </option>
@@ -51,7 +51,6 @@
       <br />
       <img id="landmark-imgs" :src="option.images" />
 
-
       <div>
         <input
           type="checkbox"
@@ -62,7 +61,8 @@
               option.venueType,
               option.description,
               option.startPoint,
-              option.endPoint
+              option.endPoint,
+              option.waypoints
             )
           "
           v-bind:id="option.id"
@@ -74,7 +74,7 @@
         {{ option.description }}
       </div>
     </tr>
-    <MapDirection ></MapDirection>
+    <MapDirection class="mapDirection"></MapDirection>
 
     <!-- <header>Header</header>
     <div id="main">
@@ -87,32 +87,35 @@
 </template>
 
 <script>
-import MapDirection from "./ItineraryDirections.vue"
+import MapDirection from "./ItineraryDirections.vue";
 export default {
-   components: {
-    MapDirection
+  components: {
+    MapDirection,
   },
   data() {
     return {
+      waypoints: [],
       selectedLandmark: {
         name: "",
         images: "",
         venueType: "",
         description: "",
         startPoint: "",
+        waypoints: "",
         endPoint: "",
       },
     };
   },
 
   methods: {
-    selectLandmark(n, i, v, d, start, e) {
+    selectLandmark(n, i, v, d, start, e, w) {
       this.selectedLandmark.name = n;
       this.selectedLandmark.images = i;
       this.selectedLandmark.venueType = v;
       this.selectedLandmark.description = d;
       this.selectedLandmark.startPoint = start;
       this.selectedLandmark.endPoint = e;
+      this.selectedLandmark.waypoints = w;
 
       this.$store.commit("REMOVELANDMARK", this.selectedLandmark.name);
     },
@@ -122,33 +125,29 @@ export default {
 
       // make a copy of the store.state.selectedLandmarks array
       let landMarksArr = [];
-      for (let i=0; i < this.$store.state.selectedLandmarks.length; i++) {
+      for (let i = 0; i < this.$store.state.selectedLandmarks.length; i++) {
         landMarksArr.push(this.$store.state.selectedLandmarks[i]);
       }
 
       let firstDestinationObj = {};
       let firstDestinationObjIndex = -123;
 
-      for (let i=0; i < landMarksArr.length; i++) {
-
+      for (let i = 0; i < landMarksArr.length; i++) {
         if (landMarksArr[i].name === firstDestination) {
           firstDestinationObj = landMarksArr[i];
           firstDestinationObjIndex = i;
         }
-      } 
-
+      }
       landMarksArr.splice(firstDestinationObjIndex, 1);
       landMarksArr.unshift(firstDestinationObj);
 
       console.log(landMarksArr);
+    },
 
-
-
-      // for (let i=0; i < this.$store.state.selectedLandmarks.length; i++) {
-      //   if (this.$store.state.selectedLandmarks[i].name == value) {
-      //     this.$store.state.selectedLandmarks.unshift(this.$store.state.selectedLandmarks[i]);
-      //   }
-      // }
+    googleRouteBuilder() {
+      for (let i = 0; i < this.$store.state.selectLandmark.length; i++) {
+          waypoints.push(this.$store.state.selectLandmark.waypoints);
+      }
     },
 
     getDirections() {
@@ -161,7 +160,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 #venueType {
   font-weight: 500;
