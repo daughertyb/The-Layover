@@ -17,15 +17,15 @@
        </div>
       </div>
 
-      <section id="allCities">
-        <select v-model="filter.city">
+      <section >
+        <select id="all-Cities" v-model="filter.city">
           <option :value="''" disabled selected>All Cities</option>
           <option v-for="city in cities" v-bind:key="city.id">
             {{ city }}
           </option>
         </select>
 
-        <select v-model="filter.venueType">
+        <select id="all-Venues" v-model="filter.venueType">
           <option :value="''" disabled selected>All Venues</option>
           <option
             v-for="venueType in filteredLandmarks"
@@ -41,13 +41,14 @@
         <tr v-for="option in filteredLandmarks" v-bind:key="option.id">
           <div class="results">
             <h2>{{ option.cityValue }}</h2>
-            <br />
+          <div id="card-img">
             <img id="landmark-imgs" :src="option.images" />
             <h2>{{ option.name }}
             <h3 id="description">{{ option.description }}</h3>
             </h2>
-
-            <br />
+          </div>
+          
+          <section id="venue-days-time">
             <div id="venueType">
               {{ option.venueType }}
             </div>
@@ -61,6 +62,7 @@
               <br />
               {{ option.closingTime }}
             </div>
+          </section>
             <div>
               <input
                 type="checkbox" 
@@ -78,6 +80,7 @@
                 v-bind:value="option.id"
               />  Add To Itinerary
             </div>
+              <br>
           </div>
         </tr>
         <footer>
@@ -244,6 +247,15 @@ div[class*="box"] {
   align-items: right;
 }
 
+#card-img {
+  display: flex;
+  justify-content: space-between;
+}
+
+#venue-days-time {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
 
 /* Top one makes whole color of button */
 /* .box-1 {
@@ -260,15 +272,20 @@ div[class*="box"] {
   
 }
 
+tr {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
 .btn-one {
   /* Button text color */
   background-color: #4063a581;
   color: rgb(0, 0, 0);  
   transition: all 0.3s;
   position: relative;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  border-radius: 25px;
+  /* border-radius: 25px; */
   
 }
 .btn-one span {
@@ -318,18 +335,25 @@ div[class*="box"] {
 
 /* ---------------------------------------------------------------------------------------------------------------------------- */
 
-
-#main {
-  font-family: "Open Sans Condensed", sans-serif;
-  background-color: rgba(82, 95, 138, 0.376);
+h1 {
+  font-size: 1.7rem;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
-/* html {
-    background-color: rgba(82, 95, 138, 0.376);
-} */
+.mainPage {
+    background-color: rgba(59, 68, 100, 0.616);
+}
 
 #venueType {
   font-weight: 500;
+  
+}
+
+h2 {
+ 
 }
 
 #description {
@@ -342,9 +366,17 @@ div[class*="box"] {
   padding-right: 10px;
 }
 
-#directions-drop{
+#all-Cities {
   font-size: 1.3rem;
-  background-color: rgba(94, 94, 179, 0.513);
+  background-color: rgba(200, 199, 196, 0.452);
+  margin-left: 42%;
+}
+
+#all-Venues {
+    font-size: 1.3rem;
+    background-color: rgba(200, 199, 196, 0.452);
+    margin-left: 15px;
+    margin-top: 20px;
 }
 
 #landmark-imgs {
@@ -355,6 +387,7 @@ div[class*="box"] {
   padding-top: 20px;
   padding-left: 10px;
   padding-right: 10px;
+  /* border: 3px solid black; */
 }
 
 p {
@@ -387,6 +420,7 @@ tr {
 
 .results {
   margin-top: 30px;
+  padding-left: 20px;
 }
 
 .mapDirection {

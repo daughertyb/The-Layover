@@ -149,12 +149,16 @@ export default {
 <style scoped>
 #main {
   font-family: "Open Sans Condensed", sans-serif;
-  background-color: rgba(82, 95, 138, 0.376);
+  background-color: rgba(59, 68, 100, 0.616);
 }
 
 /* html {
     background-color: rgba(82, 95, 138, 0.376);
 } */
+
+h1 {
+  padding-left: 15px;
+}
 
 #venueType {
   font-weight: 500;
@@ -168,11 +172,13 @@ export default {
   font-weight: 600;
   font-size: 1.5rem;
   padding-right: 10px;
+  padding-left: 20px;
 }
 
 #directions-drop{
   font-size: 1.3rem;
-  background-color: rgba(94, 94, 179, 0.513);
+  background-color: rgba(200, 199, 196, 0.452);
+  margin-left: 10px
 }
 
 #landmark-imgs {
@@ -211,6 +217,8 @@ tr {
   border-radius: 10px;
   margin-top: 30px;
     background-color: rgba(192, 144, 11, 0.657);
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .results {
