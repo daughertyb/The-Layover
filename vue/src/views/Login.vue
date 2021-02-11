@@ -44,6 +44,15 @@
 </div>
 </template>
 
+
+
+
+
+
+
+
+
+
 <script>
 import authService from "../services/AuthService";
 
@@ -84,14 +93,18 @@ export default {
 <style scoped>
 
 #headerImg {
-  padding-left: 20px;
- height: 900px;
- width: 1800px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  height: 600px;
+  width: 600px;
+  background-image: ;
 }
 
 form {
   font-size: 1.5rem;
   padding-bottom: 10px;
 }
+
 
 </style>
