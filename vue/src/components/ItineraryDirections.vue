@@ -20,10 +20,11 @@
           <input
             v-show="this.hideInput == false"
             v-bind:from="originLandmark()"
+            v-bind:mode="addWaypoint()"
             type="text"
           />
         </div>
-       
+
         <div id="inputTo">
           <input
             v-show="this.hideInput == false"
@@ -31,15 +32,12 @@
             type="text"
           />
         </div>
-        <div >
-          <select v-model="directionMode" id="mode" v-bind:mode="addWaypoint()">
-            <option value = "driving" >Driving</option>
-            <option value = "walking">Walking</option>
-
+        <div>
+          <select v-model="directionMode" id="mode">
+            <option value="driving">Driving</option>
+            <option value="walking">Walking</option>
+            <option value="bicycling">Bicycling</option>
           </select>
-
-        
-
         </div>
       </div>
 
@@ -95,18 +93,23 @@ export default {
     },
 
     addWaypoint() {
-  
       if (this.$store.state.selectedLandmarks.length > 2) {
-        this.url = this.url +"&waypoints=";
+        this.url = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyB5uhVBlG2NKfe8pT0rGiTpBkOr2JJjgLg";
+        this.url = this.url + "&waypoints=";
         for (
           let i = 1;
           i < this.$store.state.selectedLandmarks.length - 2;
           i++
-        ) { this.url =
-            this.url + (this.$store.state.selectedLandmarks[i].coordinate +"|");
+        ) {
+          this.url =
+            this.url +
+            (this.$store.state.selectedLandmarks[i].coordinate + "|");
         }
-         this.url =
-         this.url + this.$store.state.selectedLandmarks[this.$store.state.selectedLandmarks.length - 2].coordinate ;
+        this.url =
+          this.url +
+          this.$store.state.selectedLandmarks[
+            this.$store.state.selectedLandmarks.length - 2
+          ].coordinate;
       }
     },
   },
@@ -155,9 +158,8 @@ export default {
   font-size: 20px;
   font-weight: bold;
   padding: 10px;
-  border: 5px solid #669DF6;
+  border: 5px solid #669df6;
   border-radius: 10px;
-  
 }
 
 #toFromLandmark {
