@@ -67,11 +67,15 @@
       </tr>
     </table>
     <div>
-          <MapDirection></MapDirection>
+    </div>
+    <div id="map-layout">
       <ol>
+<div style="padding-top:40px;height:500px;width:500px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
         <li id="direction" class="mapDirection">
         </li>
+</div>
       </ol>
+          <MapDirection></MapDirection>
     </div>
     <!-- <header>Header</header>
     <div id="main">
@@ -257,10 +261,20 @@ table {
 }
 
 #direction {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  display: block;
+  margin-left: 50%;
+  justify-content: right;
+  flex-direction: column;
   border-radius: 15%;
+  font-weight: 600;
+
+}
+
+#map-layout {
+  display:flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
 }
 
 /* * {

@@ -13,8 +13,8 @@ import com.techelevator.model.Landmark;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Component
-@CrossOrigin
 public class RoutesService {
 	@Value("${maps.googleapis.url}")
 	private String apiUrl;
@@ -69,7 +69,7 @@ public class RoutesService {
 			if (i == lastIndex) {
 				waypointList.add(routeQuery[i]);
 			}
-				waypointList.add(routeQuery[i] + "," + routeQuery[i+1] + "|");		
+				waypointList.add(routeQuery[i] + "|" + routeQuery[i+1] + "|");		
 				i++;
 		}
 		
@@ -80,6 +80,7 @@ public class RoutesService {
 		}
 		
 		String url = apiUrl + origin + destination + waypoints + waypointStr + apiKey;
+		System.out.println(url);
 
 		HttpEntity<String> httpEntity = new HttpEntity<>("");
 		RestTemplate restTemplate = new RestTemplate();
