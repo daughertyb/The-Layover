@@ -5,26 +5,41 @@
     <div id="map">
       <div id="toAndFrom">
         <div id="inputFrom">
-          From:<input
+          <div id="toFromLandmark">
+            <h3>From: {{ this.$store.state.selectedLandmarks[0].name }}</h3>
+            <h3>
+              To:
+              {{
+                this.$store.state.selectedLandmarks[
+                  this.$store.state.selectedLandmarks.length - 1
+                ].name
+              }}
+            </h3>
+          </div>
+
+          <input
+            v-show="this.hideInput == false"
             v-bind:from="originLandmark()"
             type="text"
-            v-model="origin"
           />
         </div>
+       
         <div id="inputTo">
-          To:
           <input
+            v-show="this.hideInput == false"
             v-bind:to="destinationLandmark()"
             type="text"
-            v-model="destination"
           />
         </div>
-        <div id="mode">
-          Mode:<input
-            type="text"
-            v-model="directionMode"
-            v-bind:waypoints="addWaypoint()"
-          />
+        <div >
+          <select v-model="directionMode" id="mode" v-bind:mode="addWaypoint()">
+            <option value = "driving" >Driving</option>
+            <option value = "walking">Walking</option>
+
+          </select>
+
+        
+
         </div>
       </div>
 
@@ -46,8 +61,11 @@ export default {
   data() {
     return {
       directionMode: "driving",
+      hideInput: true,
       origin: "",
+      originName: "",
       destination: "",
+      destinationName: "",
       waypoints: "",
 
       url:
@@ -77,17 +95,18 @@ export default {
     },
 
     addWaypoint() {
+  
       if (this.$store.state.selectedLandmarks.length > 2) {
+        this.url = this.url +"&waypoints=";
         for (
           let i = 1;
-          i < this.$store.state.selectedLandmarks.length - 1;
+          i < this.$store.state.selectedLandmarks.length - 2;
           i++
-        ) {
-          this.url =
-            this.url +
-            "&waypoints=" +
-            this.$store.state.selectedLandmarks[i].coordinate;
+        ) { this.url =
+            this.url + (this.$store.state.selectedLandmarks[i].coordinate +"|");
         }
+         this.url =
+         this.url + this.$store.state.selectedLandmarks[this.$store.state.selectedLandmarks.length - 2].coordinate ;
       }
     },
   },
@@ -96,7 +115,6 @@ export default {
  
 
 <style>
-
 /* #app {
   display: block;
   justify-content: flex-start;
@@ -117,7 +135,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: flex-start;
   width: 300px;
   padding: 10px;
 }
@@ -134,7 +152,16 @@ export default {
 }
 #mode {
   display: flex;
+  font-size: 20px;
   font-weight: bold;
   padding: 10px;
+  border: 5px solid #669DF6;
+  border-radius: 10px;
+  
+}
+
+#toFromLandmark {
+  color: #664243;
+  font-size: 20px;
 }
 </style>
