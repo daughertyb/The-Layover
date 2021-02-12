@@ -2,19 +2,19 @@
   <div id="main">
     <header>
       <div>
-        
         <br />
-    <div>
-    <h1>My Itinerary</h1>
-    <!-- {{ this.selectedLandmark }} -->
-    <br>
-        
-     
-    </div>
-
+        <div>
+          <h1>My Itinerary</h1>
+          <!-- {{ this.selectedLandmark }} -->
+          <br />
+        </div>
 
         <p id="directions">Directions</p>
-        <select id="directions-drop" v-model="selectedLandmark.name" v-on:change="googleRouteBuilderStart($event)">
+        <select
+          id="directions-drop"
+          v-model="selectedLandmark.name"
+          v-on:change="googleRouteBuilderStart($event)"
+        >
           <option :value="''" disabled selected>Starting Location</option>
           <option
             v-for="option in $store.state.selectedLandmarks"
@@ -24,13 +24,12 @@
           </option>
         </select>
 
-
-          <button v-on:click='generateSteps'>Generate Route</button>
+        <button v-on:click="generateSteps">Generate Route</button>
       </div>
     </header>
 
     <table>
-      <tr id ="id"
+      <tr
         v-for="option in $store.state.selectedLandmarks"
         v-bind:key="option.id"
       >
@@ -67,14 +66,16 @@
         <br />
       </tr>
     </table>
-    <div> 
-      <form>
-      <ol>
-    <li id='direction' class="mapDirection">
-      <MapDirection></MapDirection> 
-    </li>
+    <div>
+    </div>
+    <div id="map-layout">
+      <ol id ="listframe">
+<div id="myBox">
+        <li id="direction" class="mapDirection">
+        </li>
+</div>
       </ol>
-      </form>
+          <MapDirection></MapDirection>
     </div>
     <!-- <header>Header</header>
     <div id="main">
@@ -91,7 +92,7 @@ import MapDirection from "./ItineraryDirections.vue";
 import cityAPI from "@/services/APIServices.js";
 export default {
   components: {
-    MapDirection
+    MapDirection,
   },
   data() {
     return {
@@ -110,46 +111,25 @@ export default {
 
   methods: {
     generateSteps() {
-
-      console.log('WAYPOINTS: ' + this.waypoints);
-
-/*
-
-http://localhost:8080/itinerary-directions?
-waypointStartQuery=42.341048,-83.055163
-&waypointEndQuery=42.338998,-83.048520
-&routeQuery=39.9580,-75.1724&routeQuery=40.1538,-83.1177
-&routeQuery=39.965869,-82.952827
-*/
-
-
-      // the first:
-      console.log(this.waypoints[0].coordinate);
-
-      // the last: 
-      console.log(this.waypoints[this.waypoints.length-1].coordinate);
-
-      let routeQueryString = '';
-      // in between:
-      for (let i=0; i < this.waypoints.length; i++) {
-        routeQueryString = routeQueryString + '&routeQuery=' + this.waypoints[i].coordinate;
+      let routeQueryString = "";
+      for (let i = 0; i < this.waypoints.length; i++) {
+        routeQueryString =
+          routeQueryString + "&routeQuery=" + this.waypoints[i].coordinate;
       }
- 
-
-      const dataStuff = '?waypointStartQuery=' + this.waypoints[0].coordinate + '&waypointEndQuery=' + this.waypoints[this.waypoints.length-1].coordinate +routeQueryString;
-      cityAPI.generateTravelRoute(dataStuff).then(
-        (response) => {
-          const parentElement = document.getElementById('direction');
-          for (let i=0; i < response.data.length; i++) {
-            const newElement = document.createElement('li');
-            newElement.innerHTML = response.data[i];
-            parentElement.appendChild(newElement);
-          }
-        
-        
+      const dataStuff =
+        "?waypointStartQuery=" +
+        this.waypoints[0].coordinate +
+        "&waypointEndQuery=" +
+        this.waypoints[this.waypoints.length - 1].coordinate +
+        routeQueryString;
+      cityAPI.generateTravelRoute(dataStuff).then((response) => {
+        const parentElement = document.getElementById("direction");
+        for (let i = 0; i < response.data.length; i++) {
+          const newElement = document.createElement("li");
+          newElement.innerHTML = response.data[i];
+          parentElement.appendChild(newElement);
         }
- 
-      )
+      });
     },
     selectLandmark(n, i, v, d, start, e, w) {
       this.selectedLandmark.name = n;
@@ -223,7 +203,7 @@ waypointStartQuery=42.341048,-83.055163
   padding-right: 10px;
 }
 
-#directions-drop{
+#directions-drop {
   font-size: 1.3rem;
   background-color: rgba(94, 94, 179, 0.513);
 }
@@ -257,14 +237,12 @@ input[type="checkbox"]:checked {
   background: rgb(56, 96, 224);
 }
 
-#id {
+tr {
   display: flex;
   justify-content: space-evenly;
   border: 3px solid black;
   border-radius: 10px;
   margin-top: 30px;
-  margin-left: 15px;
-  margin-right: 15px;
   background-color: rgba(192, 144, 11, 0.657);
 }
 
@@ -283,19 +261,40 @@ table {
 }
 
 #direction {
-  display: flex; 
+  display: block;
+  margin-left: 50%;
+  justify-content: right;
   flex-direction: column;
-  flex-wrap: wrap;
   border-radius: 15%;
   font-weight: 600;
+  margin: 40px;
+
 }
 
-/* #directions-drop{
-  font-size: 1.3rem;
-  background-color: rgba(200, 199, 196, 0.452);
-  margin-left: 10px
-} */
+#map-layout {
+  display:flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content:center;
+  border: 20px #2B1F12;
 
+
+}
+
+#listframe {
+  padding-top: 80px;
+  padding-right: 5px;
+}
+
+#myBox {
+   padding:5px;
+   height:500px;
+   width:500px;
+   
+   border:10px solid #4C433C;
+   font:16px/26px Georgia, Garamond, Serif;
+   overflow:scroll;
+}
 
 /* * {
   box-sizing: border-box;

@@ -17,6 +17,58 @@ thumbsup int,
 thumbsdown int,
 constraint pk_id primary key (id)
 );
+
+insert into landmark (name, description, img, operatingdays, openingtime, closingtime,
+venuetype, location, address, latitude, longitude, thumbsup, thumbsdown )
+values ('Empire State Building',
+'The Empire State Building is a 102-story Art Deco skyscraper in Midtown Manhattan in New York
+City, United States. It was designed by Shreve, Lamb & Harmon and built from 1930 to 1931.
+Its name is derived from "Empire State", the nickname of the state of New York.
+The building has a roof height of 1,250 feet and stands a total of 1,454 feet tall,
+including its antenna. ',
+'https://90northgroup.com/wp-content/uploads/2016/09/shutterstock_129799142.jpg',
+'Monday-Sunday',
+'12:00 pm',
+'9:00 pm',
+'Park',
+'New York',
+'20 W 34th St, New York, NY 10001',
+'40.748817', '-73.985428', 221, 21);
+
+insert into landmark (name, description, img, operatingdays, openingtime, closingtime,
+venuetype, location, address, latitude, longitude, thumbsup, thumbsdown )
+values
+('Columbus Zoo and Aquarium',
+'Columbus Zoo and Aquarium is home to animals representing various species from around the globe.
+It is a recreational and education destination that includes Zoombezi Bay water
+park and a 18-hole safari golf club.',
+'https://images.pexels.com/photos/39571/gorilla-silverback-animal-silvery-grey-39571.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+'Monday-Sunday',
+'10:00 am',
+'4:00 pm',
+'Zoo',
+'Columbus',
+'4850 W Powell Rd, Powell, OH 43065',
+'40.1538',
+'-83.1177', 49, 2);
+
+insert into landmark (name, description, img, operatingdays, openingtime, closingtime,
+venuetype, location, address, latitude, longitude, thumbsup, thumbsdown )
+values ('Millennium Park',
+'Millennium Park is a public park located in the Loop community area of Chicago in
+Illinois operated by the Chicago Department of Cultural Affairs and managed by MB
+Real Estate. The park was intended to celebrate the third millennium and is a
+prominent civic center near the citys Lake Michigan shoreline that covers a 24.5-acre
+section of northwestern Grant Park.',
+'https://d21xlh2maitm24.cloudfront.net/wdc/millenium-park.png?mtime=20170131102110',
+'Monday-Sunday',
+'8:00 am',
+'9:00 pm',
+'Park',
+'Chicago',
+'201 E Randolph St, Chicago, IL 60602',
+'41.882702', '-87.619392', 522, 2);
+
 insert into landmark (name, description, img, operatingdays, openingtime, closingtime,
 venuetype, location, address, latitude, longitude, thumbsup, thumbsdown )
 values ('Motown Museum',
@@ -45,22 +97,7 @@ has one of the largest and most significant art collections in the United States
 '5200 Woodward Ave, Detroit, MI 48202',
 '42.3594',
 '-83.0645', 10, 3);
-insert into landmark (name, description, img, operatingdays, openingtime, closingtime,
-venuetype, location, address, latitude, longitude, thumbsup, thumbsdown )
-values
-('Columbus Zoo and Aquarium',
-'Columbus Zoo and Aquarium is home to animals representing various species from around the globe.
-It is a recreational and education destination that includes Zoombezi Bay water
-park and a 18-hole safari golf club.',
-'https://images.pexels.com/photos/39571/gorilla-silverback-animal-silvery-grey-39571.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-'Monday-Sunday',
-'10:00 am',
-'4:00 pm',
-'Zoo',
-'Columbus',
-'4850 W Powell Rd, Powell, OH 43065',
-'40.1538',
-'-83.1177', 49, 2);
+
 insert into landmark (name, description, img, operatingdays, openingtime, closingtime,
 venuetype, location, address, latitude, longitude, thumbsup, thumbsdown )
 values
@@ -143,22 +180,7 @@ values ('USS Constitution',
 'Boston',
 'Building 22, Charlestown Navy Yard, Charlestown, MA 02129',
 '42.221169', '-71.031205', 500, 7);
-insert into landmark (name, description, img, operatingdays, openingtime, closingtime,
-venuetype, location, address, latitude, longitude, thumbsup, thumbsdown )
-values ('Millennium Park',
-'Millennium Park is a public park located in the Loop community area of Chicago in
-Illinois operated by the Chicago Department of Cultural Affairs and managed by MB
-Real Estate. The park was intended to celebrate the third millennium and is a
-prominent civic center near the citys Lake Michigan shoreline that covers a 24.5-acre
-section of northwestern Grant Park.',
-'https://d21xlh2maitm24.cloudfront.net/wdc/millenium-park.png?mtime=20170131102110',
-'Monday-Sunday',
-'8:00 am',
-'9:00 pm',
-'Park',
-'Chicago',
-'201 E Randolph St, Chicago, IL 60602',
-'41.882702', '-87.619392', 522, 2);
+
 insert into landmark (name, description, img, operatingdays, openingtime, closingtime,
 venuetype, location, address, latitude, longitude, thumbsup, thumbsdown )
 values ('Maggie Daley Park',
@@ -189,22 +211,7 @@ million visitors annually, and is the most filmed location in the world.',
 'New York',
 '110th Street to Central Park South (59th Street)',
 '40.785091', '-73.968285', 322, 43);
-insert into landmark (name, description, img, operatingdays, openingtime, closingtime,
-venuetype, location, address, latitude, longitude, thumbsup, thumbsdown )
-values ('Empire State Building',
-'The Empire State Building is a 102-story Art Deco skyscraper in Midtown Manhattan in New York
-City, United States. It was designed by Shreve, Lamb & Harmon and built from 1930 to 1931.
-Its name is derived from "Empire State", the nickname of the state of New York.
-The building has a roof height of 1,250 feet and stands a total of 1,454 feet tall,
-including its antenna. ',
-'https://90northgroup.com/wp-content/uploads/2016/09/shutterstock_129799142.jpg',
-'Monday-Sunday',
-'12:00 pm',
-'9:00 pm',
-'Park',
-'New York',
-'20 W 34th St, New York, NY 10001',
-'40.748817', '-73.985428', 221, 21);
+
 create table daysopen (
 daysId serial,
 landmarkid int,

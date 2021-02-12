@@ -7,25 +7,25 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.client.RestTemplate;
 import com.techelevator.model.Landmark;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Component
 public class RoutesService {
 	@Value("${maps.googleapis.url}")
 	private String apiUrl;
 	@Value("${derek.google.api.key}")
 	private String key;
-	Landmark landmark = new Landmark();
-	
-	
+		
 	// generates travel distance and time between starting location and ending location
 	public List<Landmark> generateTravelDuration(String startPoint, String endPoint) {
 		
-		String origin = "origin=" + landmark.getStartPoint();
-		String destination = "&destination=" + landmark.getEndPoint();
+		String origin = "origin=" + startPoint;
+		String destination = "&destination=" + endPoint;
 		String apiKey = "&key=" + key;
 		
 		String url = apiUrl + origin + destination + apiKey;
@@ -44,6 +44,7 @@ public class RoutesService {
 						.path("text").asText();
 				String totalDuration = jsonNode.path("routes").path(i).path("legs").path(j).path("duration")
 						.path("text").asText();
+				
 				Landmark landmarkTravelDuration = new Landmark(totalDistance, totalDuration);
 				travelDurationList.add(landmarkTravelDuration);
 			}
@@ -55,10 +56,9 @@ public class RoutesService {
 	
 	// generates travel route/directions from starting location, ending location and waypoints in between
 	public List<String> generateTravelRoute(String startPoint, String endPoint, String[] routeQuery) {
-				
-		ArrayList <String> waypointList = new ArrayList <String>();	
-		String origin = "origin=" + landmark.getStartPoint();
-		String destination = "&destination=" + landmark.getEndPoint();
+		ArrayList <String> waypointList = new ArrayList <String>();
+		String origin = "origin=" + startPoint;
+		String destination = "&destination=" + endPoint;
 		String waypoints = "&waypoints=optimize:true=";
 		String apiKey = "&key=" + key;
 	
@@ -69,7 +69,7 @@ public class RoutesService {
 			if (i == lastIndex) {
 				waypointList.add(routeQuery[i]);
 			}
-				waypointList.add(routeQuery[i] + "," + routeQuery[i+1] + "|");		
+				waypointList.add(routeQuery[i] + "|" + routeQuery[i+1] + "|");		
 				i++;
 		}
 		
@@ -81,8 +81,7 @@ public class RoutesService {
 		
 		String url = apiUrl + origin + destination + waypoints + waypointStr + apiKey;
 		System.out.println(url);
-	
-		
+
 		HttpEntity<String> httpEntity = new HttpEntity<>("");
 		RestTemplate restTemplate = new RestTemplate();
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -99,12 +98,11 @@ public class RoutesService {
 				travelRouteList.add(instruction);
 			}
 			
-			
-			
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
 		
 		return travelRouteList;
+				
 	}
 }

@@ -84,11 +84,6 @@
           </div>
         </tr>
         <footer>
-     <div class="box-1">
-        <div class="btn btn-one">
-          <span>Create an Itinerary</span>
-        </div>
-      </div>
      </footer>
       </table>
      
