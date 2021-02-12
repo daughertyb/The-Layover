@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,23 +19,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.model.Landmark;
 import com.techelevator.service.RoutesService;
 
+@CrossOrigin
 @RestController
 public class RoutesController {
 	@Autowired
 	RoutesService routesService = new RoutesService();
-	Landmark landmark = new Landmark();
 
 	@RequestMapping(path="/travel-time", method=RequestMethod.GET)
 	public List<Landmark> generateTravelDuration(@RequestParam String originQuery,@RequestParam String destinationQuery) {
 		
-		return routesService.generateTravelDuration(landmark.getStartPoint(), landmark.getEndPoint());
+		return routesService.generateTravelDuration(originQuery, destinationQuery);
 		
 	}
 	
 	@RequestMapping(path="/itinerary-directions", method=RequestMethod.GET)
 	public List<String> generateTravelRoute(@RequestParam String waypointStartQuery, @RequestParam String waypointEndQuery, @RequestParam String[] routeQuery) {
 				
-		return routesService.generateTravelRoute(landmark.getStartPoint(), landmark.getEndPoint(), landmark.getRoutePoints());
+		return routesService.generateTravelRoute(waypointEndQuery, waypointEndQuery, routeQuery);
 		
 	}
 	
