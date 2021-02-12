@@ -30,7 +30,7 @@
     </header>
 
     <table>
-      <tr
+      <tr id ="id"
         v-for="option in $store.state.selectedLandmarks"
         v-bind:key="option.id"
       >
@@ -67,9 +67,14 @@
         <br />
       </tr>
     </table>
-    <div id='direction' class="mapDirection">
-      <!-- <step-by-step></step-by-step> -->
+    <div> 
+      <form>
+      <ol>
+    <li id='direction' class="mapDirection">
       <MapDirection></MapDirection> 
+    </li>
+      </ol>
+      </form>
     </div>
     <!-- <header>Header</header>
     <div id="main">
@@ -136,7 +141,7 @@ waypointStartQuery=42.341048,-83.055163
         (response) => {
           const parentElement = document.getElementById('direction');
           for (let i=0; i < response.data.length; i++) {
-            const newElement = document.createElement('div');
+            const newElement = document.createElement('li');
             newElement.innerHTML = response.data[i];
             parentElement.appendChild(newElement);
           }
@@ -252,13 +257,15 @@ input[type="checkbox"]:checked {
   background: rgb(56, 96, 224);
 }
 
-tr {
+#id {
   display: flex;
   justify-content: space-evenly;
   border: 3px solid black;
   border-radius: 10px;
   margin-top: 30px;
-    background-color: rgba(192, 144, 11, 0.657);
+  margin-left: 15px;
+  margin-right: 15px;
+  background-color: rgba(192, 144, 11, 0.657);
 }
 
 .results {
@@ -274,6 +281,21 @@ tr {
 table {
   display: grid;
 }
+
+#direction {
+  display: flex; 
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 15%;
+  font-weight: 600;
+}
+
+/* #directions-drop{
+  font-size: 1.3rem;
+  background-color: rgba(200, 199, 196, 0.452);
+  margin-left: 10px
+} */
+
 
 /* * {
   box-sizing: border-box;

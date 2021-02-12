@@ -101,6 +101,7 @@ export default {
   width: 500px;
   padding-bottom: 40px;
   border-radius: 15%;
+  font-family: "Open Sans Condensed", sans-serif;
  
 }
 
@@ -109,11 +110,13 @@ form {
   font-size: 1.5rem;
   padding-bottom: 10px;
   padding-left: 40%;
+  font-family: "Open Sans Condensed", sans-serif;
 }
 
 
 #body {
  background-color: rgba(59, 68, 100, 0.616);
+ font-family: "Open Sans Condensed", sans-serif;
 }
 
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h2>Google Direction</h2>
+    <h2 id="google-title">Google Direction</h2>
 
     <div id="map">
       <div id="toAndFrom">
@@ -96,13 +96,12 @@ export default {
  
 
 <style>
-#app {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
+
+/* #app {
+  display: block;
+  justify-content: flex-start;
   margin: 40px;
-}
+} */
 
 #map {
   display: flex;
