@@ -2,8 +2,9 @@
 <div id="body">
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1>City Tour </h1>
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h1>The Layover</h1>
+      <h3 class="tag">Explore Our List of Must-See Sights for Your Next Layover City!</h3>
+      <h4 class="h3 mb-3 font-weight-normal">Please Sign In</h4>
       <div
         class="alert alert-danger"
         role="alert"
@@ -93,23 +94,32 @@ export default {
 </script>
 <style scoped>
 
+#tag {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+}
+
 #headerImg {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: stretch;
   margin: 0 auto;
   height: 500px;
-  width: 500px;
+  width: 100%;
   padding-bottom: 40px;
-  border-radius: 15%;
   font-family: "Open Sans Condensed", sans-serif;
  
 }
 
 form {
+  text-align: center;
   display: block;
   font-size: 1.5rem;
   padding-bottom: 10px;
-  padding-left: 40%;
   font-family: "Open Sans Condensed", sans-serif;
 }
 
