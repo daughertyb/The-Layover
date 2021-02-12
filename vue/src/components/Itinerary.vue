@@ -69,8 +69,8 @@
     <div>
     </div>
     <div id="map-layout">
-      <ol>
-<div style="padding-top:40px;height:500px;width:500px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+      <ol id ="listframe">
+<div id="myBox">
         <li id="direction" class="mapDirection">
         </li>
 </div>
@@ -267,6 +267,7 @@ table {
   flex-direction: column;
   border-radius: 15%;
   font-weight: 600;
+  margin: 40px;
 
 }
 
@@ -274,7 +275,25 @@ table {
   display:flex;
   flex-direction: row-reverse;
   align-items: center;
-  justify-content: center;
+  justify-content:center;
+  border: 20px #2B1F12;
+
+
+}
+
+#listframe {
+  padding-top: 80px;
+  padding-right: 5px;
+}
+
+#myBox {
+   padding:5px;
+   height:500px;
+   width:500px;
+   
+   border:10px solid #4C433C;
+   font:16px/26px Georgia, Garamond, Serif;
+   overflow:scroll;
 }
 
 /* * {
